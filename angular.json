@@ -31,9 +31,14 @@
               "src/assets"
             ],
             "styles": [
+              "../Istim/node_modules/@fortawesome/fontawesome-free/scss/fontawesome.scss",
+              "../Istim/node_modules/@fortawesome/fontawesome-free/scss/brands.scss",
+              "../Istim/node_modules/@fortawesome/fontawesome-free/scss/solid.scss",
+              "../Istim/node_modules/bootstrap/scss/bootstrap.scss",
               "src/styles.scss"
             ],
-            "scripts": []
+            "scripts": [
+            ]
           },
           "configurations": {
             "production": {
