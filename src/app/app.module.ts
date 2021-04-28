@@ -1,5 +1,5 @@
-import { NavBarComponent } from './shared/components/header/navbar/navbar';
-import { LoginbtnComponent} from './shared/components/header/loginbtn/loginbtn.component';
+import { NavBarComponent } from './shared/components/navbar/navbar';
+import { LoginbtnComponent} from './shared/components/loginbtn/loginbtn.component';
 import { AuthModule } from './auth/auth.module';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
@@ -12,7 +12,7 @@ import { ValueComponent } from './value/value.component';
 import { HttpClientModule } from '@angular/common/http'
 import { SharedModule } from './shared/shared.module';
 import { LoginComponent } from './auth/components/login/login.component';
-import { NgbdDropdownFormModule } from './shared/components/header/loginbtn/loginbtn.module';
+import { NgbdDropdownFormModule } from './shared/components/loginbtn/loginbtn.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({

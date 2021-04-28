@@ -1,0 +1,31 @@
+<li class="nav-item dropdown" ngbDropdown class="d-inline-block" ngbDropdown display="dynamic" placement="bottom-right"> 
+        <a class="nav-link dropdown-toggle" ngbDropdownToggle id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          Perfil
+        </a>  
+          <div ngbDropdownMenu aria-labelledby="dropdownForm1">
+          <form class="px-4 py-3">
+            <div class="form-group">
+              <label for="exampleDropdownFormEmail1">Email</label>
+              <input type="email" class="form-control" id="exampleDropdownFormEmail1" placeholder="email@exemplo.com" autocomplete="username">
+            </div>
+            <div class="form-group">
+              <label for="exampleDropdownFormPassword1">Senha</label>
+              <input type="password" class="form-control" id="exampleDropdownFormPassword1" placeholder="Senha" autocomplete="current-password">
+            </div>
+            <div class="form-check">
+              <input type="checkbox" class="form-check-input" id="dropdownCheck">
+              <label class="form-check-label" for="dropdownCheck">
+                Lembrar de mim
+              </label>
+            </div>
+            <button type="submit" class="btn btn-primary">Login</button>
+          </form>
+          <div class="dropdown-divider"></div>
+          <button ngbDropdownItem>
+          <a class="nav-link" [routerLink]= "['register']" routerLinkActive = "active"> 
+          Novo por aqui? Registre-se</a></button>
+          <button ngbDropdownItem>
+          <a class="nav-link" [routerLink]= "['reset-password']" routerLinkActive = "active">
+          Esqueceu a senha?</a></button>
+        </div>
+      </li>

@@ -10,7 +10,7 @@ import {debounceTime} from 'rxjs/operators'
 	padding-right: 1rem;
 	padding-left: 1rem;
 	padding-bottom: .5rem;
-	background-color: #f8f9fa;
+	background-color: #343a40;
 	border-bottom-right-radius: .25rem;
 	border-bottom-left-radius: .25rem;
 	align-items: flex-start;

@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
 
 @Component({
-  selector: 'ngbd-dropdown-form',
+  selector: 'loginbtn',
   templateUrl: './loginbtn.component.html'
 })
 export class LoginbtnComponent {
