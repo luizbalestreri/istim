@@ -12,7 +12,6 @@ import { ValueComponent } from './value/value.component';
 import { HttpClientModule } from '@angular/common/http'
 import { SharedModule } from './shared/shared.module';
 import { LoginComponent } from './auth/components/login/login.component';
-import { NgbdDropdownFormModule } from './shared/components/loginbtn/loginbtn.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
