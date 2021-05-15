@@ -1,33 +1,41 @@
-import { NavBarComponent } from './shared/components/navbar/navbar';
-import { LoginbtnComponent} from './shared/components/loginbtn/loginbtn.component';
+import { AuthService } from './core/auth/auth.service';
+import { CoreModule } from './core/core.module';
+import { NavBarComponent } from './shared/components/navbar/navbar.component';
+import { LoginbtnComponent } from './shared/components/loginbtn/loginbtn.component';
 import { AuthModule } from './auth/auth.module';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { NgbCollapseModule, NgbDropdownModule, NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import {
+  NgbCollapseModule,
+  NgbDropdownModule,
+  NgbModule,
+} from '@ng-bootstrap/ng-bootstrap';
 import { ValueComponent } from './value/value.component';
 
-import { HttpClientModule } from '@angular/common/http'
+import { HttpClientModule } from '@angular/common/http';
 import { SharedModule } from './shared/shared.module';
 import { LoginComponent } from './auth/components/login/login.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    ValueComponent
-  ],
+  declarations: [AppComponent, ValueComponent],
   imports: [
+    CommonModule,
     BrowserModule,
     AppRoutingModule,
     AuthModule,
     HttpClientModule,
     SharedModule,
-    NgbModule
+    NgbModule,
+    CoreModule,
+    FormsModule,
+    ReactiveFormsModule,
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  providers: [AuthService],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
