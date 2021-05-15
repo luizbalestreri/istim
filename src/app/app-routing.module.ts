@@ -4,6 +4,12 @@ import { AuthGuard } from './core/auth/auth.guard';
 
 const routes: Routes = [
   {
+    path: 'categorias',
+    loadChildren: () =>
+      import('./category/category.module').then((x) => x.CategoryModule),
+    canActivate: [AuthGuard],
+  },
+  {
     path: '**',
     redirectTo: 'not-found',
   },
