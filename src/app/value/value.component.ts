@@ -16,7 +16,7 @@ export class ValueComponent implements OnInit {
   }
 
   getValues(){
-    return this.http.get("localhost").subscribe(
+    return this.http.get("http://localhost:5000").subscribe(
       response => {//TODO: Inserir link da API Rest inserir um observer no lugar do subscribe
       console.log(response);
       this.values = response;

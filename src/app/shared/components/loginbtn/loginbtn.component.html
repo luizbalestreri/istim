@@ -1,9 +1,9 @@
 <li class="nav-item dropdown"  ngbDropdown class="d-inline-block" ngbDropdown display="dynamic" placement="bottom-left"> 
-  <a class="nav-link dark dropdown-toggle" ngbDropdownToggle id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+  <a class="nav-link dropdown-toggle" ngbDropdownToggle id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Perfil
   </a>  
-    <div ngbDropdownMenu aria-labelledby="dropdownForm1" class="navbar-light" >
-    <form class="px-4 py-3">
+    <div ngbDropdownMenu aria-labelledby="dropdownForm1" class="navbar-dark" >
+    <form #f="ngForm" (ngSubmit)="onSubmit(f)" class="px-4 py-3">
       <div class="form-group">
         <label for="exampleDropdownFormEmail1">Email</label>
         <input type="email" class="form-control" id="exampleDropdownFormEmail1" placeholder="email@exemplo.com" autocomplete="username">
@@ -19,7 +19,7 @@
           <p></p>
         </label>
       </div>
-      <button type="submit" class="btn btn-primary">Login <i class = "fas fa-sign-in-alt"></i></button>
+      <button type="submit" [disabled]="f.invalid" class="btn btn-primary">Login <i class = "fas fa-sign-in-alt"></i></button>
     </form>
     <div class="dropdown-divider"></div>
     <button ngbDropdownItem>
