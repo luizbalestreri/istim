@@ -1,36 +1,51 @@
-import {Component, OnInit} from '@angular/core';
-import { AuthService } from '../../services/auth.service';
-import { NgForm } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { AuthService, ILoginCredentials } from 'src/app/core/auth/auth.service';
 
 @Component({
   selector: 'loginbtn',
   templateUrl: './loginbtn.component.html',
-  styles: [`
-  background-color: #343a40;
-    a:link, a:visited {
-  ;
-  color: blue;
-  display: inline-block;
-}
-
-a:hover, a:active {
-  background-color: #343a40
-}
-  `]
+  styles: [
+    `
+      background-color: #343a40;
+      a:link,
+      a:visited {
+        color: blue;
+        display: inline-block;
+      }
+      a:hover,
+      a:active {
+        background-color: #343a40;
+      }
+    `,
+  ],
 })
+export class LoginbtnComponent {
+  constructor(
+    private _authService: AuthService,
+    private _router: Router,
+    private _formBuilder: FormBuilder
+  ) {}
 
-export class LoginbtnComponent implements OnInit{
+  form: FormGroup = this._formBuilder.group({
+    email: [
+      '',
+      [Validators.required, Validators.minLength(3), Validators.maxLength(40)],
+    ],
+    password: ['', [Validators.required, Validators.minLength(6)]],
+  });
 
-  constructor(private authService: AuthService){}
-
-  ngOnInit(): void {
-  }
-
-
-  onSubmit(f: NgForm){
-    console.log(f.value);
-    console.log(f.valid);
-    this.authService.login(f.value)
+  submit(): void {
+    let data: ILoginCredentials = this.form.getRawValue();
+    this._authService.authenticate(data).subscribe(
+      (res) => {
+        console.log('Sucesso');
+        this._router.navigate(['/']);
+      },
+      (err) => {
+        console.log('Erro');
+      }
+    );
   }
 }
-
