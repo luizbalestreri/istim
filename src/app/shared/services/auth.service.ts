@@ -6,7 +6,7 @@ import {map} from 'rxjs/operators';
 })
 export class AuthService {
 
-  authUrl = "http://localhost:5000/[endereço]"
+  authUrl = "http://localhost:5000/api/v1/Auth/Authenticate"
 
   constructor(private http: HttpClient) {
 

@@ -1,6 +1,7 @@
-import { AuthService } from './../../../shared/services/auth.service';
 import { Component, OnInit } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { AuthService, ILoginCredentials } from 'src/app/core/auth/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -9,14 +10,31 @@ import { NgForm } from '@angular/forms';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private authService: AuthService) { }
+  constructor(private _authService: AuthService,
+              private _router: Router,
+              private _formBuilder: FormBuilder) { }
+  
+  ngOnInit(){
 
-  ngOnInit(): void {
   }
-  onSubmit(f: NgForm){
-    this.authService.login(f.value)
-    console.log(f.value);
-    console.log(f.valid);
+
+  form: FormGroup = this._formBuilder.group({
+    email: [
+      '',
+      [Validators.required, Validators.minLength(3), Validators.maxLength(40)],
+    ],
+    password: ['', [Validators.required, Validators.minLength(6)]],
+  });
+  submit(): void {
+    let data: ILoginCredentials = this.form.getRawValue();
+    this._authService.authenticate(data).subscribe(
+      (res) => {
+        console.log('Sucesso');
+        this._router.navigate(['/']);
+      },
+      (err) => {
+        console.log('Erro');
+      }
+    );
   }
 }
-
