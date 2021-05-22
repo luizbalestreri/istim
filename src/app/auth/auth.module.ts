@@ -1,3 +1,4 @@
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RegistroComponent } from './components/registro/registro.component';
 import { LoginComponent } from './components/login/login.component';
 import { AuthRoutingModule } from './auth-routing.module';
@@ -6,13 +7,14 @@ import { NgModule } from '@angular/core';
 import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
 
 @NgModule({
-  declarations: [LoginComponent, RegistroComponent, ResetPasswordComponent],
+  declarations: [RegistroComponent, ResetPasswordComponent],
   imports: [
     CommonModule,
-    AuthRoutingModule
+    AuthRoutingModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   exports:[
-    LoginComponent,
     RegistroComponent
   ]
 })

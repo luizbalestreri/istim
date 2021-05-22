@@ -1,3 +1,4 @@
+import { LoginComponent } from './../auth/components/login/login.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
 import { LoginbtnComponent } from './components/loginbtn/loginbtn.component';
@@ -16,6 +17,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
+    LoginComponent,
     HeaderComponent,
     ColumnOneComponent,
     NavBarComponent,
@@ -31,6 +33,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     ReactiveFormsModule,
     RouterModule,
   ],
-  exports: [ColumnOneComponent],
+  exports: [ColumnOneComponent, LoginComponent],
 })
 export class SharedModule {}
