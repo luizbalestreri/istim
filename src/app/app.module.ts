@@ -20,6 +20,7 @@ import { SharedModule } from './shared/shared.module';
 import { LoginComponent } from './auth/components/login/login.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [AppComponent, ValueComponent],
@@ -34,6 +35,7 @@ import { CommonModule } from '@angular/common';
     CoreModule,
     FormsModule,
     ReactiveFormsModule,
+    BrowserAnimationsModule,
   ],
   providers: [AuthService],
   bootstrap: [AppComponent],
