@@ -1,21 +1,46 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
+import { IUserTokenDecoded } from '../token/interfaces/IUserTokenDecoded';
 import { TokenService } from '../token/token.service';
 
 @Injectable({ providedIn: 'root' })
 export class UserService {
-  constructor(private tokenService: TokenService, private router: Router) {}
+  userRole: string = '';
+
+  constructor(private _tokenService: TokenService, private _router: Router) {
+    this._tokenService.hasToken() && this.decodeUserToken();
+  }
 
   setToken(token: string): void {
-    this.tokenService.setToken(token);
+    this._tokenService.setToken(token);
+    this.decodeUserToken();
   }
 
   logout(): void {
-    this.tokenService.removeToken();
-    this.router.navigate(['/']);
+    this._tokenService.removeToken();
+    this._router.navigate(['/']);
   }
 
   isLogged(): boolean {
-    return this.tokenService.hasToken();
+    return this._tokenService.hasToken();
+  }
+
+  isAdmin(): boolean {
+    return 'ADMIN' === this.userRole;
+  }
+
+  private decodeUserToken(): void {
+    const token = this._tokenService.getToken();
+
+    const user: IUserTokenDecoded = this.decode(token);
+    this.userRole = user.role;
+  }
+
+  private decode(token: string): any {
+    try {
+      return JSON.parse(atob(token.split('.')[1]));
+    } catch {
+      console.error(`Nao foi possivel decodificar o token`);
+    }
   }
 }

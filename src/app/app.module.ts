@@ -1,4 +1,3 @@
-import { AuthService } from './core/auth/auth.service';
 import { CoreModule } from './core/core.module';
 import { NavBarComponent } from './shared/components/navbar/navbar.component';
 import { LoginbtnComponent } from './shared/components/loginbtn/loginbtn.component';
@@ -21,6 +20,7 @@ import { LoginComponent } from './auth/components/login/login.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AuthService } from './core/auth/auth.service';
 
 @NgModule({
   declarations: [AppComponent, ValueComponent],

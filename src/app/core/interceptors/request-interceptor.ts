@@ -13,14 +13,14 @@ import { TokenService } from './../token/token.service';
 
 @Injectable()
 export class RequestInterceptor implements HttpInterceptor {
-  constructor(private tokenService: TokenService, private router: Router) {}
+  constructor(private _tokenService: TokenService, private _router: Router) {}
 
   intercept(
     req: HttpRequest<any>,
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
-    if (this.tokenService.hasToken()) {
-      let token: any = this.tokenService.getToken();
+    if (this._tokenService.hasToken()) {
+      let token: any = this._tokenService.getToken();
 
       const authReq = req.clone({
         setHeaders: { Authorization: `Bearer ${token}` },
@@ -29,7 +29,7 @@ export class RequestInterceptor implements HttpInterceptor {
       return next.handle(authReq).pipe(
         catchError((error) => {
           if (error instanceof HttpErrorResponse)
-            if (error.status === 401) this.router.navigateByUrl('/login');
+            if (error.status === 401) this._router.navigateByUrl('/login');
 
           return throwError(error);
         })
