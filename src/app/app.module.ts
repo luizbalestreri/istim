@@ -1,7 +1,6 @@
 import { AuthService } from './core/auth/auth.service';
 import { CoreModule } from './core/core.module';
 import { NavBarComponent } from './shared/components/navbar/navbar.component';
-import { LoginbtnComponent } from './shared/components/loginbtn/loginbtn.component';
 import { AuthModule } from './auth/auth.module';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';

@@ -1,29 +1,39 @@
 <div class="row">
     <div class="col-md-6 offset-md-3 mt-4">
-        <h3>Login</h3>
         <form [formGroup]="form">
-            <div class="form-group">
-                <label for="loginUsername">Usuário</label>
-                <input 
-                    type="email"
-                    class="form-control"
-                    id="exampleDropdownFormEmail1"
-                    placeholder="email@exemplo.com"
-                    autocomplete="username"
-                    formControlName="email"
-                >
-            </div>
-            <div class="form-group">
-                <label for="loginPassword">Senha</label>
-                <input 
-                    type="password"
-                    class="form-control"
-                    id="exampleDropdownFormPassword1"
-                    placeholder="Senha"
-                    autocomplete="current-password"
-                    formControlName="password"
-                    >
-            </div>
+        <div>
+        <mat-form-field>
+        <mat-label>Login</mat-label>
+        <input type="email" matInput formControlName="email" />
+        <mat-error *ngIf="form.get('email')?.hasError('required')">
+          Este campo é <strong>obrigatório</strong>
+        </mat-error>
+        <mat-error *ngIf="form.get('email')?.hasError('minlength')">
+          Informe no mínimo 2 caracteres
+        </mat-error>
+        <mat-error *ngIf="form.get('email')?.hasError('maxlength')">
+          Informe no máximo 60 caracteres
+        </mat-error>
+        <mat-error *ngIf="form.get('email')?.hasError('email')">
+        Email Inválido
+        </mat-error>
+        </mat-form-field>
+        </div>
+        <div>
+        <mat-form-field>
+        <mat-label>Senha</mat-label>
+        <input type="password" matInput formControlName="password" />
+        <mat-error *ngIf="form.get('password')?.hasError('required')">
+          Este campo é <strong>obrigatório</strong>
+        </mat-error>
+        <mat-error *ngIf="form.get('password')?.hasError('minlength')">
+          Informe no mínimo 2 caracteres
+        </mat-error>
+        <mat-error *ngIf="form.get('password')?.hasError('maxlength')">
+          Informe no máximo 60 caracteres
+        </mat-error>
+        </mat-form-field>
+        </div>
             <button type="submit"
                     class="btn btn-primary" (click) = "submit()">Login <i class="fas fa-sign-in-alt"></i></button>
             <p></p>
