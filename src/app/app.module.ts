@@ -1,22 +1,15 @@
 import { CoreModule } from './core/core.module';
-import { NavBarComponent } from './shared/components/navbar/navbar.component';
-import { LoginbtnComponent } from './shared/components/loginbtn/loginbtn.component';
 import { AuthModule } from './auth/auth.module';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import {
-  NgbCollapseModule,
-  NgbDropdownModule,
-  NgbModule,
-} from '@ng-bootstrap/ng-bootstrap';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ValueComponent } from './value/value.component';
-
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { HttpClientModule } from '@angular/common/http';
 import { SharedModule } from './shared/shared.module';
-import { LoginComponent } from './auth/components/login/login.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -36,6 +29,7 @@ import { AuthService } from './core/auth/auth.service';
     FormsModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
+    MatSnackBarModule,
   ],
   providers: [AuthService],
   bootstrap: [AppComponent],
