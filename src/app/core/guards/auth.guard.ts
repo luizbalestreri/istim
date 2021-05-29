@@ -5,6 +5,7 @@ import {
   Router,
   RouterStateSnapshot,
   UrlTree,
+  CanLoad
 } from '@angular/router';
 import { Observable } from 'rxjs';
 import { UserService } from '../user/user.service';

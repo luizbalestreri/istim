@@ -24,7 +24,7 @@ export class LoginComponent extends AppBase implements OnInit {
   form: FormGroup = this._formBuilder.group({
     email: [
       '',
-      [Validators.required, Validators.minLength(3), Validators.maxLength(40)],
+      [Validators.required, Validators.email],
     ],
     password: ['', [Validators.required, Validators.minLength(6)]],
   });
