@@ -14,15 +14,15 @@ export interface ILoginCredentials {
 
 @Injectable()
 export class AuthService {
-  constructor(private http: HttpClient, private userService: UserService) {}
+  constructor(private _http: HttpClient, private _userService: UserService) {}
 
   authenticate(data: ILoginCredentials): Observable<any> {
     let url: string = `${BASE_URL}Auth/Authenticate`;
 
-    return this.http.post(url, data, { observe: 'response' }).pipe(
+    return this._http.post(url, data, { observe: 'response' }).pipe(
       tap((res: any) => {
         const authToken: any = res.body.token;
-        this.userService.setToken(authToken);
+        this._userService.setToken(authToken);
       })
     );
   }

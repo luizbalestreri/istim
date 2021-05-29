@@ -1,3 +1,4 @@
+import { SnackbarService } from './../shared/components/snackbar/snackbar.service';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
