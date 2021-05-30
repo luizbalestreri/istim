@@ -22,7 +22,7 @@ export class RegistroService {
   }
 
   create(Registro: IRegistro): Observable<any> {
-    return this._http.post(`${BASE_URL}Registro`, Registro).pipe(take(1));
+    return this._http.post(`${BASE_URL}User`, Registro).pipe(take(1));
   }
 
   edit(Registro: IRegistro): Observable<any> {
