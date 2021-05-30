@@ -1,49 +1,58 @@
-<div class="row">
-    <div class="col-md-7 offset-md-3 mt-4" id="myContainer" >
+<div class="main-div">
+      <mat-card>
+      <mat-card-title>
+      Login
+      </mat-card-title>
+      <br>
+      <mat-card-content>
         <form [formGroup]="form">
-        <div>
-        <mat-form-field style="width:400px !important">
-        <mat-label>Login</mat-label>
-        <input type="email" matInput formControlName="email" />
-        <mat-error *ngIf="form.get('email')?.hasError('required')">
-          Este campo é <strong>obrigatório</strong>
-        </mat-error>
-        <mat-error *ngIf="form.get('email')?.hasError('minlength')">
-          Informe no mínimo 2 caracteres
-        </mat-error>
-        <mat-error *ngIf="form.get('email')?.hasError('maxlength')">
-          Informe no máximo 60 caracteres
-        </mat-error>
-        <mat-error *ngIf="form.get('email')?.hasError('email')">
-        Email Inválido
-        </mat-error>
-        </mat-form-field>
-        </div>
-        <div>
-        <mat-form-field style="width:400px !important">
-        <mat-label>Senha</mat-label>
-        <input type="password" matInput formControlName="password" />
-        <mat-error *ngIf="form.get('password')?.hasError('required')">
-          Este campo é <strong>obrigatório</strong>
-        </mat-error>
-        <mat-error *ngIf="form.get('password')?.hasError('minlength')">
-          Informe no mínimo 2 caracteres
-        </mat-error>
-        <mat-error *ngIf="form.get('password')?.hasError('maxlength')">
-          Informe no máximo 60 caracteres
-        </mat-error>
-        </mat-form-field>
-        </div>
-            <button type="submit"
-                    class="btn btn-primary" (click) = "submit()">Login <i class="fas fa-sign-in-alt"></i></button>
-            <p></p>
-            <div class="form-group form-check">
-                <a [routerLink]="['/reset-password']">Esqueci a senha.</a>
-            </div>
-            <div class="form-group form-check">
-                <a [routerLink]="['/register']">Novo por aqui? Crie uma conta.</a>
-            </div>
-            
-        </form>
-    </div>
+          <div>
+          <mat-form-field class = 'form'>
+          <mat-label>Email</mat-label>
+          <input type="email" matInput formControlName="email" />
+          <mat-error *ngIf="form.get('email')?.hasError('required')">
+            Este campo é <strong>obrigatório</strong>
+          </mat-error>
+          <mat-error *ngIf="form.get('email')?.hasError('minlength')">
+            Informe no mínimo 2 caracteres
+          </mat-error>
+          <mat-error *ngIf="form.get('email')?.hasError('maxlength')">
+            Informe no máximo 60 caracteres
+          </mat-error>
+          <mat-error *ngIf="form.get('email')?.hasError('email')">
+          Email Inválido
+          </mat-error>
+          </mat-form-field>
+          </div>
+          <div>
+          <mat-form-field class = 'form'>
+          <mat-label>Senha</mat-label>
+          <input type="password" matInput formControlName="password" />
+          <mat-error *ngIf="form.get('password')?.hasError('required')">
+            Este campo é <strong>obrigatório</strong>
+          </mat-error>
+          <mat-error *ngIf="form.get('password')?.hasError('minlength')">
+            Informe no mínimo 2 caracteres
+          </mat-error>
+          <mat-error *ngIf="form.get('password')?.hasError('maxlength')">
+            Informe no máximo 60 caracteres
+          </mat-error>
+          </mat-form-field>
+          </div>
+          
+              <div>
+              <button mat-raised-button type="submit" color = "primary"
+                       (click) = "submit()">Login <i class="fas fa-sign-in-alt"></i></button>
+              </div>
+              <br>
+              <mat-list>
+                  <a [routerLink]="['/reset-password']">Esqueci a senha.</a>
+              </mat-list>
+              <mat-list>
+                  <a [routerLink]="['/register']">Novo por aqui? Crie uma conta.</a>
+              </mat-list>
+              
+          </form>
+          </mat-card-content>
+        </mat-card>
 </div>

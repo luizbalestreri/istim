@@ -14,7 +14,7 @@ export class LoginComponent extends AppBase implements OnInit {
     _injector: Injector,
     private _authService: AuthService,
     private _router: Router,
-    private _formBuilder: FormBuilder
+    private _formBuilder: FormBuilder,
   ) {
     super(_injector);
   }

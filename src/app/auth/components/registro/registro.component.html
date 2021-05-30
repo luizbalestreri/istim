@@ -1,58 +1,78 @@
-<div class="row">
-    <div class="col-md-6 offset-md-3 mt-4">
-    <form [formGroup]="form">
+<div class="main-div">
+  <mat-card>
+    <mat-card-title>
+      Registro
+    </mat-card-title>
+    <br>
+      <mat-card-content>
+    <form [formGroup]="formReg">
         <div>
             <mat-form-field class="form">
-                <mat-label>Usuário</mat-label>
+                <mat-label>Nome de usuário</mat-label>
                 <input type="text" matInput formControlName="user" />
-                <mat-error *ngIf="form.get('user')?.hasError('required')">
+                <mat-error *ngIf="formReg.get('user')?.hasError('required')">
                   Este campo é <strong>obrigatório</strong>
                 </mat-error>
-                <mat-error *ngIf="form.get('user')?.hasError('minlength')">
-                Informe no mínimo 2 caracteres
+                <mat-error *ngIf="formReg.get('user')?.hasError('minlength')">
+                  Informe no mínimo 2 caracteres
                 </mat-error>
-                <mat-error *ngIf="form.get('user')?.hasError('maxlength')">
-                Informe no máximo 60 caracteres
+                <mat-error *ngIf="formReg.get('user')?.hasError('maxlength')">
+                  Informe no máximo 60 caracteres
                 </mat-error>
             </mat-form-field>
         </div>
         <div>
             <mat-form-field class="form">
                 <mat-label>Email</mat-label>
-                <input type="email" matInput formControlName="email" />
-                <mat-error *ngIf="form.get('email')?.hasError('required')">
+                <input type="email" matInput formControlName="emailReg" autocomplete = "off"/>
+                <mat-error *ngIf="formReg.get('emailReg')?.hasError('required')">
                   Este campo é <strong>obrigatório</strong>
                 </mat-error>
-                <mat-error *ngIf="form.get('email')?.hasError('minlength')">
+                <mat-error *ngIf="formReg.get('emailReg')?.hasError('minlength')">
                   Informe no mínimo 2 caracteres
                 </mat-error>
-                <mat-error *ngIf="form.get('email')?.hasError('maxlength')">
+                <mat-error *ngIf="formReg.get('emailReg')?.hasError('maxlength')">
                   Informe no máximo 60 caracteres
                 </mat-error>
-                <mat-error *ngIf="form.get('email')?.hasError('email')">
+                <mat-error *ngIf="formReg.get('emailReg')?.hasError('email')">
                   Email Inválido
+                </mat-error>
+            </mat-form-field>
+        </div>
+          <div>
+            <mat-form-field class="form">
+                <mat-label>Senha</mat-label>
+                <input type="password" matInput formControlName="passwordReg" autocomplete = "off"/>
+                <mat-error *ngIf="formReg.get('passwordReg')?.hasError('required')">
+                  Este campo é <strong>obrigatório</strong>
+                </mat-error>
+                <mat-error *ngIf="formReg.get('passwordReg')?.hasError('minlength')">
+                  Informe no mínimo 2 caracteres
+                </mat-error>
+                <mat-error *ngIf="formReg.get('passwordReg')?.hasError('maxlength')">
+                  Informe no máximo 60 caracteres
                 </mat-error>
             </mat-form-field>
         </div>
         <div>
             <mat-form-field class="form">
-                <mat-label>Senha</mat-label>
-                <input type="password" matInput formControlName="password" />
-                <mat-error *ngIf="form.get('password')?.hasError('required')">
+                <mat-label>Telefone</mat-label>
+                <input type="text" matInput formControlName="user" />
+                <mat-error *ngIf="formReg.get('user')?.hasError('required')">
                   Este campo é <strong>obrigatório</strong>
                 </mat-error>
-                <mat-error *ngIf="form.get('password')?.hasError('minlength')">
+                <mat-error *ngIf="formReg.get('user')?.hasError('minlength')">
                   Informe no mínimo 2 caracteres
                 </mat-error>
-                <mat-error *ngIf="form.get('password')?.hasError('maxlength')">
+                <mat-error *ngIf="formReg.get('user')?.hasError('maxlength')">
                   Informe no máximo 60 caracteres
                 </mat-error>
             </mat-form-field>
         </div>
-            <button type="submit"
-                    class="btn btn-primary" (click) = "submit()">Login <i class="fas fa-sign-in-alt"></i></button>
+            <button mat-raised-button type="submit" color = "primary"
+             (click) = "submit()">Registrar  <i class="fas fa-sign-in-alt"></i></button>
             <p></p>
-            
         </form>
-    </div>
+        </mat-card-content>
+        </mat-card>
 </div>

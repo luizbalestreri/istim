@@ -1,39 +1,55 @@
-import { Component, OnInit } from '@angular/core';
+import { SnackbarService } from './../../../shared/components/snackbar/snackbar.service';
+import { RegistroService } from './registro.service';
+import { IRegistro } from './IRegistro';
+import { Component, OnInit, Injector } from '@angular/core';
 import { FormBuilder,FormGroup, Validators  } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService, ILoginCredentials } from 'src/app/core/auth/auth.service';
+import { AppBase } from 'src/app/shared/components/app-base.component';
 
 @Component({
-  selector: 'app-registro',
   templateUrl: './registro.component.html',
-  styleUrls: ['./registro.component.scss']
+  styleUrls: ['./registro.component.scss'],
+  providers: [SnackbarService]
 })
-export class RegistroComponent implements OnInit {
+export class RegistroComponent extends AppBase {
 
-  constructor(private _authService: AuthService,
+  constructor(
+  _injector: Injector,  
+  private _authService: AuthService,
   private _router: Router,
-  private _formBuilder: FormBuilder) { }
+  private _formBuilder: FormBuilder,
+  private _registroService: RegistroService
+  ) { super(_injector);}
 
   ngOnInit(): void {
   }
-  form: FormGroup = this._formBuilder.group({
+  formReg: FormGroup = this._formBuilder.group({
+    id: [],
+    user: ['', 
+    [Validators.required, Validators.minLength(2), Validators.maxLength(64)]
+    ],
     email: [
       '',
       [Validators.required, Validators.email],
     ],
     password: ['', [Validators.required, Validators.minLength(6)]],
+    phone: ['', [Validators.required, Validators.minLength(8), Validators.maxLength(12)]]
   });
   
   submit(): void {
-    let data: ILoginCredentials = this.form.getRawValue();
-    this._authService.authenticate(data).subscribe(
+    let data: IRegistro = this.formReg.getRawValue();
+    data.id = +data.id;
+    this._registroService.create(data).subscribe(
       (res) => {
-        console.log('Sucesso');
+        this._snackbarService.success(`${res.body.user.username} registrado com sucesso!`)
+        console.log(res);
         this._router.navigate(['/']);
       },
       (err) => {
-        console.log('Erro');
+        this._snackbarService.alert('Erro ao cadastrar usuário')
+        console.log(err)
       }
-    );
+    )
   }
 }
