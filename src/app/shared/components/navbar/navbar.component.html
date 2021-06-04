@@ -1,33 +1,75 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <div class="container-fluid">
     <a class="navbar-brand" href="#"><i class="fab fa-itch-io"></i>ISTIM</a>
-    <button class="navbar-toggler" type="button" (click)="isMenuCollapsed = !isMenuCollapsed" aria-label="Toggle navigation">
+    <button
+      class="navbar-toggler"
+      type="button"
+      (click)="isMenuCollapsed = !isMenuCollapsed"
+      aria-label="Toggle navigation"
+    >
       <span class="navbar-toggler-icon"></span>
     </button>
 
-    <div [ngbCollapse]="isMenuCollapsed" class="collapse navbar-collapse position-relative" id="navbarSupportedContent">
-      <div class="menu pb-lg-0 flex-column flex-lg-row ">
-      <ul class="navbar-nav w-100 mb-2 mb-lg-0">
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" [routerLink]= "['login']" routerLinkActive = "router-link-active"> Loja</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Biblioteca</a>
-        </li>
-        <li>
-        <li class="nav-item">
-          <a class="nav-link active" aria-current= "page" [routerLink]= "['login']" routerLinkActive = "router-link-active">Perfil</a>    
-        </li>
-        <li>
-            <form class="d-flex">
-            <input class="form-control me-2" type="search" [formControl]="search" placeholder="Pesquisar" aria-label="Search">
-            <button class="btn btn-outline-success" (click)="searchChange.emit(search.value)">Pesquisar</button>
+    <div
+      [ngbCollapse]="isMenuCollapsed"
+      class="collapse navbar-collapse position-relative"
+      id="navbarSupportedContent"
+    >
+      <div class="pb-lg-0 flex-lg-row menu-items">
+        <div>
+          <ul class="navbar-nav w-100 mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" routerLink="">
+                Loja</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Biblioteca</a>
+            </li>
+            <li></li>
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" routerLink="login"
+                >Perfil</a
+              >
+            </li>
+          </ul>
+        </div>
+        <div>
+          <form class="d-flex">
+            <input
+              class="form-control me-2"
+              type="search"
+              [formControl]="search"
+              placeholder="Pesquisar"
+              aria-label="Search"
+            />
+            <button
+              class="btn btn-outline-success"
+              (click)="searchChange.emit(search.value)"
+            >
+              Pesquisar
+            </button>
           </form>
-        
-        </li>
-
-      </ul>
-
+        </div>
+        <div>
+          <button
+            *ngIf="!userIsLogged()"
+            mat-button
+            color="accent"
+            routerLink="login"
+          >
+            <mat-icon>login</mat-icon> Iniciar Sessão
+          </button>
+          <button
+            *ngIf="userIsLogged()"
+            (click)="logout()"
+            mat-button
+            color="accent"
+            routerLink="/"
+          >
+            <mat-icon>logout</mat-icon> Finalizar Sessão
+          </button>
+        </div>
       </div>
     </div>
   </div>

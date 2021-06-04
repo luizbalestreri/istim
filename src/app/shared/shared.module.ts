@@ -12,6 +12,8 @@ import {
 } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SnackbarComponent } from './components/snackbar/snackbar.component';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
 
 @NgModule({
   declarations: [
@@ -29,6 +31,8 @@ import { SnackbarComponent } from './components/snackbar/snackbar.component';
     NgbCollapseModule,
     ReactiveFormsModule,
     RouterModule,
+    MatIconModule,
+    MatButtonModule,
   ],
   exports: [ColumnOneComponent],
 })

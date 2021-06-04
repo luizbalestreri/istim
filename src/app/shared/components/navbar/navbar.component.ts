@@ -1,44 +1,37 @@
-import { Component, VERSION,OnInit,Output,EventEmitter } from '@angular/core';
+import {
+  Component,
+  VERSION,
+  OnInit,
+  Output,
+  EventEmitter,
+} from '@angular/core';
+import { FormControl } from '@angular/forms';
+import { debounceTime } from 'rxjs/operators';
+import { UserService } from './../../../core/user/user.service';
 
-import {FormControl} from '@angular/forms'
-import {debounceTime} from 'rxjs/operators'
 @Component({
   selector: 'nav-bar',
   templateUrl: './navbar.component.html',
-  styles:[`
-.menu {
-	padding-right: 1rem;
-	padding-left: 1rem;
-	padding-bottom: .5rem;
-	background-color: #343a40;
-	border-bottom-right-radius: .25rem;
-	border-bottom-left-radius: .25rem;
-	align-items: flex-start;
-	position: absolute;
-	display: flex;
-  justify-content: space-between; 
-  left:-1rem;
-}
- 
-@media(min-width:576px) {
-  .menu{
-    width:100%
-  }
-  ul.dropdown-menu{
-    width:inherit;
-  }
-}  
-`]
+  styleUrls: ['./navbar.component.scss'],
 })
-export class NavBarComponent implements OnInit  {
-  name = 'Angular ' + VERSION.major;
-  search=new FormControl();
-  isMenuCollapsed:boolean=true
-  @Output() searchChange:EventEmitter<any>=new EventEmitter<any>();
-  ngOnInit()
-  {
-     this.search.valueChanges.pipe(debounceTime(200)).subscribe(res=>{
-       this.searchChange.emit(res)
-     })
+export class NavBarComponent implements OnInit {
+  search = new FormControl();
+  isMenuCollapsed: boolean = true;
+  @Output() searchChange: EventEmitter<any> = new EventEmitter<any>();
+
+  constructor(private _userService: UserService) {}
+
+  ngOnInit() {
+    this.search.valueChanges.pipe(debounceTime(200)).subscribe((res) => {
+      this.searchChange.emit(res);
+    });
+  }
+
+  userIsLogged(): boolean {
+    return this._userService.isLogged();
+  }
+
+  logout(): void {
+    this._userService.logout();
   }
 }
