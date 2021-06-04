@@ -1,4 +1,3 @@
-import { SnackbarService } from './../shared/components/snackbar/snackbar.service';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
@@ -8,6 +7,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatMenuModule } from '@angular/material/menu';
 import { MatSortModule } from '@angular/material/sort';
 import { CategoryComponent } from './category.component';
 import { CategoryRoutingModule } from './category-routing.module';
@@ -29,6 +29,7 @@ import { CreateOrEditCategoryComponent } from './create-or-edit/create-or-edit-c
     MatTableModule,
     MatPaginatorModule,
     MatSortModule,
+    MatMenuModule,
   ],
   providers: [
     CategoryService,
