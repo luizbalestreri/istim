@@ -1,0 +1,28 @@
+<form [formGroup]="categoryForm">
+  <div class="row">
+    <div class="col-sm-6">
+      <mat-form-field>
+        <mat-label>Categoria</mat-label>
+        <input type="text" matInput formControlName="title" />
+        <mat-error *ngIf="categoryForm.get('title')?.hasError('required')">
+          Este campo é <strong>obrigatório</strong>
+        </mat-error>
+        <mat-error *ngIf="categoryForm.get('title')?.hasError('minlength')">
+          Informe no mínimo 2 caracteres
+        </mat-error>
+        <mat-error *ngIf="categoryForm.get('title')?.hasError('maxlength')">
+          Informe no máximo 60 caracteres
+        </mat-error>
+      </mat-form-field>
+    </div>
+  </div>
+</form>
+<button
+  type="button"
+  [disabled]="!categoryForm.valid"
+  (click)="save()"
+  mat-raised-button
+  color="primary"
+>
+  <i class="fa fa-save"></i> <span> Salvar</span>
+</button>

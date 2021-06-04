@@ -6,7 +6,9 @@ import {
   EventEmitter,
 } from '@angular/core';
 import { FormControl } from '@angular/forms';
+import { Observable } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
+import { IUserLoggedInfo } from 'src/app/core/user/IUserLoggedInfo';
 import { UserService } from './../../../core/user/user.service';
 
 @Component({
@@ -15,6 +17,8 @@ import { UserService } from './../../../core/user/user.service';
   styleUrls: ['./navbar.component.scss'],
 })
 export class NavBarComponent implements OnInit {
+  username: string = '';
+
   search = new FormControl();
   isMenuCollapsed: boolean = true;
   @Output() searchChange: EventEmitter<any> = new EventEmitter<any>();
@@ -22,6 +26,10 @@ export class NavBarComponent implements OnInit {
   constructor(private _userService: UserService) {}
 
   ngOnInit() {
+    this._userService.getUser().subscribe((res) => {
+      this.username = res.username;
+    });
+
     this.search.valueChanges.pipe(debounceTime(200)).subscribe((res) => {
       this.searchChange.emit(res);
     });

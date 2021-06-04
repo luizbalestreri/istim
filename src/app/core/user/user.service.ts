@@ -1,14 +1,25 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { IUserTokenDecoded } from '../token/interfaces/IUserTokenDecoded';
 import { TokenService } from '../token/token.service';
+import { IUserLoggedInfo } from './IUserLoggedInfo';
 
 @Injectable({ providedIn: 'root' })
 export class UserService {
-  userRole: string = '';
+  user$: BehaviorSubject<IUserLoggedInfo> =
+    new BehaviorSubject<IUserLoggedInfo>({
+      role: '',
+      username: '',
+      email: '',
+    });
 
   constructor(private _tokenService: TokenService, private _router: Router) {
     this._tokenService.hasToken() && this.decodeUserToken();
+  }
+
+  getUser(): Observable<IUserLoggedInfo> {
+    return this.user$.asObservable();
   }
 
   setToken(token: string): void {
@@ -26,14 +37,18 @@ export class UserService {
   }
 
   isAdmin(): boolean {
-    return 'ADMIN' === this.userRole;
+    return 'ADMIN' === this.user$.getValue().role;
   }
 
   private decodeUserToken(): void {
     const token = this._tokenService.getToken();
 
     const user: IUserTokenDecoded = this.decode(token);
-    this.userRole = user.role;
+    this.user$.next({
+      username: user.unique_name,
+      role: user.role,
+      email: user.email,
+    });
   }
 
   private decode(token: string): any {
