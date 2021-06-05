@@ -54,6 +54,10 @@ export class CategoryComponent extends AppBase implements AfterViewInit {
 
     dialogRef.afterClosed().subscribe((res) => {
       if (res) {
+        this._categoryService.getAll().subscribe((res) => {
+          this.dataSource = new MatTableDataSource(res);
+          this.dataSource.paginator = this.paginator;
+        });
       }
     });
   }
