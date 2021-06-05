@@ -3,7 +3,7 @@
 <mat-dialog-content>
   <form [formGroup]="categoryForm">
     <mat-form-field>
-      <mat-label>Categoria</mat-label>
+      <mat-label>Título</mat-label>
       <input type="text" matInput formControlName="title" />
       <mat-error *ngIf="categoryForm.get('title')?.hasError('required')">
         Este campo é <strong>obrigatório</strong>
