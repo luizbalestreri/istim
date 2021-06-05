@@ -8,6 +8,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatMenuModule } from '@angular/material/menu';
+import { MatDialogModule } from '@angular/material/dialog';
 import { MatSortModule } from '@angular/material/sort';
 import { CategoryComponent } from './category.component';
 import { CategoryRoutingModule } from './category-routing.module';
@@ -30,6 +31,7 @@ import { CreateOrEditCategoryComponent } from './create-or-edit/create-or-edit-c
     MatPaginatorModule,
     MatSortModule,
     MatMenuModule,
+    MatDialogModule,
   ],
   providers: [
     CategoryService,

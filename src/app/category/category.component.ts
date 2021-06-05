@@ -2,9 +2,11 @@ import { Component, Injector, AfterViewInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-import { AppBase } from '../shared/components/app-base.component';
+import { MatDialog } from '@angular/material/dialog';
 import { ICategory } from './Interfaces/ICategory';
 import { CategoryService } from './category.service';
+import { AppBase } from '../shared/components/app-base.component';
+import { CreateOrEditCategoryComponent } from './create-or-edit/create-or-edit-category.component';
 
 @Component({
   templateUrl: './category.component.html',
@@ -17,7 +19,11 @@ export class CategoryComponent extends AppBase implements AfterViewInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-  constructor(_injector: Injector, private _categoryService: CategoryService) {
+  constructor(
+    _injector: Injector,
+    private dialog: MatDialog,
+    private _categoryService: CategoryService
+  ) {
     super(_injector);
     this._categoryService.getAll().subscribe((res) => {
       this.dataSource = new MatTableDataSource(res);
@@ -38,5 +44,17 @@ export class CategoryComponent extends AppBase implements AfterViewInit {
     if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();
     }
+  }
+
+  openDialogCreateOrEdit(category?: ICategory): void {
+    const dialogRef = this.dialog.open(CreateOrEditCategoryComponent, {
+      data: category,
+      width: '40%',
+    });
+
+    dialogRef.afterClosed().subscribe((res) => {
+      if (res) {
+      }
+    });
   }
 }

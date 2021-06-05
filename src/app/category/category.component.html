@@ -1,6 +1,16 @@
-<mat-form-field class="pt-4">
-  <mat-label>Filter</mat-label>
-  <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Mia" #input />
+<div class="btn-add-category">
+  <button mat-raised-button color="primary" (click)="openDialogCreateOrEdit()">
+    Adicionar Categoria
+  </button>
+</div>
+<mat-form-field class="m-2">
+  <mat-label>Filtro</mat-label>
+  <input
+    matInput
+    (keyup)="applyFilter($event)"
+    placeholder="Ex. Estratégia"
+    #input
+  />
 </mat-form-field>
 
 <div class="mat-elevation-z8">
@@ -13,10 +23,10 @@
           [matMenuTriggerFor]="menu"
           aria-label="Menu para remover ou editar categoria"
         >
-          <mat-icon>miscellaneous_services</mat-icon>
+          <mat-icon>settings</mat-icon>
         </button>
         <mat-menu #menu="matMenu">
-          <button mat-menu-item>
+          <button mat-menu-item (click)="openDialogCreateOrEdit(row)">
             <mat-icon>edit</mat-icon>
             <span>Editar</span>
           </button>
@@ -37,8 +47,11 @@
     <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
 
     <tr class="mat-row" *matNoDataRow>
-      <td class="mat-cell" colspan="4">
+      <td *ngIf="input.value.length > 0" class="mat-cell" colspan="4">
         Nenhum dado corresponde ao filtro "{{ input.value }}"
+      </td>
+      <td *ngIf="input.value.length <= 0" class="mat-cell" colspan="4">
+        Sem dados
       </td>
     </tr>
   </table>
