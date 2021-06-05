@@ -12,7 +12,7 @@ import { CreateOrEditCategoryComponent } from './create-or-edit/create-or-edit-c
   templateUrl: './category.component.html',
   styleUrls: ['./category.component.scss'],
 })
-export class CategoryComponent extends AppBase implements AfterViewInit {
+export class CategoryComponent extends AppBase {
   displayedColumns: string[] = ['actions', 'title'];
   dataSource!: MatTableDataSource<ICategory>;
 
@@ -25,16 +25,15 @@ export class CategoryComponent extends AppBase implements AfterViewInit {
     private _categoryService: CategoryService
   ) {
     super(_injector);
-    this._categoryService.getAll().subscribe((res) => {
-      this.dataSource = new MatTableDataSource(res);
-    });
+    this.setDataSource();
   }
 
-  ngAfterViewInit() {
-    setTimeout(() => {
+  setDataSource(): void {
+    this._categoryService.getAll().subscribe((res) => {
+      this.dataSource = new MatTableDataSource(res);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
-    }, 100);
+    });
   }
 
   applyFilter(event: Event) {
@@ -53,12 +52,7 @@ export class CategoryComponent extends AppBase implements AfterViewInit {
     });
 
     dialogRef.afterClosed().subscribe((res) => {
-      if (res) {
-        this._categoryService.getAll().subscribe((res) => {
-          this.dataSource = new MatTableDataSource(res);
-          this.dataSource.paginator = this.paginator;
-        });
-      }
+      if (res) this.setDataSource();
     });
   }
 }
