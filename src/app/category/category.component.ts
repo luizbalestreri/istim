@@ -55,4 +55,25 @@ export class CategoryComponent extends AppBase {
       if (res) this.setDataSource();
     });
   }
+
+  deleteCategory(category: ICategory): void {
+    let dialogRef = this._confirmDialogService.confirm(
+      'Atenção!',
+      `Remover a categoria: ${category.title}?`
+    );
+
+    dialogRef.afterClosed().subscribe((res) => {
+      if (res) {
+        this._categoryService.delete(category.id).subscribe(
+          (res) => {
+            this._snackbarService.success('Categoria removida com sucesso!');
+            this.setDataSource();
+          },
+          (err) => {
+            this._snackbarService.warn('Erro ao remover categoria!');
+          }
+        );
+      }
+    });
+  }
 }
