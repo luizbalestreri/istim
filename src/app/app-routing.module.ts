@@ -10,6 +10,11 @@ const routes: Routes = [
     canActivate: [AdminGuard],
   },
   {
+    path: 'jogos',
+    loadChildren: () => import('./game/game.module').then((x) => x.GameModule),
+    canActivate: [AdminGuard],
+  },
+  {
     path: '**',
     redirectTo: 'not-found',
   },

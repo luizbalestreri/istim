@@ -1,17 +1,17 @@
 <h2 mat-dialog-title>{{ title }}</h2>
 <hr />
 <mat-dialog-content>
-  <form [formGroup]="categoryForm" autocomplete="off">
+  <form [formGroup]="gameForm" autocomplete="off">
     <mat-form-field>
       <mat-label>Título</mat-label>
       <input type="text" matInput formControlName="title" />
-      <mat-error *ngIf="categoryForm.get('title')?.hasError('required')">
+      <mat-error *ngIf="gameForm.get('title')?.hasError('required')">
         Este campo é <strong>obrigatório</strong>
       </mat-error>
-      <mat-error *ngIf="categoryForm.get('title')?.hasError('minlength')">
+      <mat-error *ngIf="gameForm.get('title')?.hasError('minlength')">
         Informe no mínimo 2 caracteres
       </mat-error>
-      <mat-error *ngIf="categoryForm.get('title')?.hasError('maxlength')">
+      <mat-error *ngIf="gameForm.get('title')?.hasError('maxlength')">
         Informe no máximo 60 caracteres
       </mat-error>
     </mat-form-field>
@@ -22,7 +22,7 @@
   <button mat-button mat-dialog-close>Cancelar</button>
   <button
     type="button"
-    [disabled]="!categoryForm.valid"
+    [disabled]="!gameForm.valid"
     (click)="save()"
     mat-raised-button
     color="primary"
