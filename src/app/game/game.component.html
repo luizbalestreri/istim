@@ -1,6 +1,6 @@
-<div class="btn-add-category">
+<div class="btn-add-game">
   <button mat-raised-button color="primary" (click)="openDialogCreateOrEdit()">
-    Adicionar Categoria
+    Adicionar Jogo
   </button>
 </div>
 <mat-form-field class="p-2">
@@ -8,7 +8,7 @@
   <input
     matInput
     (keyup)="applyFilter($event)"
-    placeholder="Ex. Estratégia"
+    placeholder="Ex. Counter-Strike"
     autocomplete="off"
     #input
   />
@@ -31,7 +31,7 @@
             <mat-icon>edit</mat-icon>
             <span>Editar</span>
           </button>
-          <button mat-menu-item (click)="deleteCategory(row)">
+          <button mat-menu-item (click)="deleteGame(row)">
             <mat-icon>delete</mat-icon>
             <span>Remover</span>
           </button>

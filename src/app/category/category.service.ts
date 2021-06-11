@@ -18,7 +18,7 @@ export class CategoryService {
   }
 
   getById(id: number): Observable<ICategory> {
-    return this._http.get<ICategory>(`${BASE_URL}Category`).pipe(take(1));
+    return this._http.get<ICategory>(`${BASE_URL}Category/${id}`).pipe(take(1));
   }
 
   create(category: ICategory): Observable<any> {

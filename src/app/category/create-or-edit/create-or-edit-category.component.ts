@@ -3,13 +3,11 @@ import { Component, Inject, Injector, OnInit } from '@angular/core';
 import { AppBase } from 'src/app/shared/components/app-base.component';
 import { CategoryService } from '../category.service';
 import { ICategory } from '../Interfaces/ICategory';
-import { SnackbarService } from 'src/app/shared/components/snackbar/snackbar.service';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
   templateUrl: './create-or-edit-category.component.html',
   styleUrls: ['./create-or-edit-category.component.scss'],
-  providers: [SnackbarService],
 })
 export class CreateOrEditCategoryComponent extends AppBase implements OnInit {
   title: string = '';
