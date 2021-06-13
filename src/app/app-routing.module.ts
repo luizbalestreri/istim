@@ -4,6 +4,12 @@ import { AdminGuard } from './core/guards/admin.guard';
 
 const routes: Routes = [
   {
+    path: '',
+    loadChildren: () =>
+      import('./home-page/home-page.module').then((x) => x.HomePageModule),
+    canActivate: [],
+  },
+  {
     path: 'categorias',
     loadChildren: () =>
       import('./category/category.module').then((x) => x.CategoryModule),
