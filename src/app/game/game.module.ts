@@ -14,10 +14,11 @@ import { RequestInterceptor } from '../core/interceptors/request-interceptor';
 import { CreateOrEditGameComponent } from './create-or-edit/create-or-edit-game.component';
 import { GameRoutingModule } from './game-routing.module';
 import { GameComponent } from './game.component';
+import { ViewGameComponent } from './view/view-game.component';
 import { GameService } from './game.service';
 
 @NgModule({
-  declarations: [GameComponent, CreateOrEditGameComponent],
+  declarations: [GameComponent, CreateOrEditGameComponent, ViewGameComponent],
   imports: [
     CommonModule,
     GameRoutingModule,

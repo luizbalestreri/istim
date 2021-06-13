@@ -1,6 +1,6 @@
 <div class="game-carousel">
-  <ngb-carousel *ngIf="games">
-    <ng-template ngbSlide *ngFor="let game of games">
+  <ngb-carousel *ngIf="carouselGames">
+    <ng-template ngbSlide *ngFor="let game of carouselGames">
       <div class="picsum-img-wrapper" (click)="redirectToGame(game.id)">
         <img
           [src]="'data:image/jpg;base64, ' + game.image | safeHtml"
