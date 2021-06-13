@@ -14,7 +14,7 @@ export class LoginComponent extends AppBase implements OnInit {
     _injector: Injector,
     private _authService: AuthService,
     private _router: Router,
-    private _formBuilder: FormBuilder,
+    private _formBuilder: FormBuilder
   ) {
     super(_injector);
   }
@@ -22,10 +22,7 @@ export class LoginComponent extends AppBase implements OnInit {
   ngOnInit() {}
 
   form: FormGroup = this._formBuilder.group({
-    email: [
-      '',
-      [Validators.required, Validators.email],
-    ],
+    email: ['', [Validators.required, Validators.email]],
     password: ['', [Validators.required, Validators.minLength(6)]],
   });
 
@@ -40,5 +37,13 @@ export class LoginComponent extends AppBase implements OnInit {
         this._snackbarService.alert('E-mail ou senha inválidos!');
       }
     );
+  }
+
+  navigateToResetPassword(): void {
+    this._router.navigate(['reset-password']);
+  }
+
+  navigateToRegister(): void {
+    this._router.navigate(['register']);
   }
 }

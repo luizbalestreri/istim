@@ -1,10 +1,18 @@
-  .form{
-    width: 400px;
-    font-size: 20px;
-  }
-  .main-div{
-    height: 60vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
+.form {
+  width: 400px;
+  font-size: 20px;
+}
+.main-div {
+  height: 60vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.btn-navigate {
+  cursor: pointer;
+}
+
+.btn-navigate:hover {
+  text-decoration: underline;
+}
