@@ -1,3 +1,4 @@
+import { RouterModule } from '@angular/router';
 import { MatCardModule } from '@angular/material/card';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RegistroComponent } from './components/registro/registro.component';
@@ -19,6 +20,7 @@ import { LoginComponent } from './components/login/login.component';
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
+    RouterModule,
     MatButtonModule,
     MatIconModule,
     MatInputModule,

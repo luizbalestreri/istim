@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { GameService } from './../game.service';
+import { IGame } from './../interfaces/IGame';
 
 @Component({
   templateUrl: './view-game.component.html',
@@ -13,14 +14,17 @@ export class ViewGameComponent implements OnInit {
     private _gameService: GameService
   ) {}
 
+  game!: IGame;
+
   ngOnInit(): void {
     this._activedRoute.params.subscribe((res) => {
       this._gameService.getById(res.gameId).subscribe(
         (res) => {
-          console.log(res);
           if (!res) {
             this._router.navigate(['not-found']);
           }
+
+          this.game = res;
         },
         () => {
           this._router.navigate(['not-found']);

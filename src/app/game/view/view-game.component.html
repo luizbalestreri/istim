@@ -1,1 +1,39 @@
-<p>Testee</p>
+<div class="game-info-header">
+  <h2 class="game-title">{{ game?.title }}</h2>
+  <div class="row">
+    <div class="col-sm-8">
+      <figure>
+        <div class="game-video">
+          <iframe
+            class="game-video-iframe"
+            title="YouTube video player"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen
+            [src]="
+              'https://www.youtube.com/embed/' + game?.videoURL + '?autoplay=1'
+                | safeHtml
+            "
+          ></iframe>
+        </div>
+      </figure>
+    </div>
+    <div class="col-sm-4">
+      <ul class="game-info-list">
+        <li>
+          <img
+            [src]="'data:image/jpg;base64, ' + game?.image | safeHtml"
+            class="game-image"
+            alt="Random first slide"
+          />
+        </li>
+        <li>
+          <p class="game-info-item">{{ game?.description }}</p>
+          <p class="game-info-item">
+            Data de lançamento: {{ game?.releaseDate | date: "dd/MM/yyyy" }}
+          </p>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
