@@ -1,0 +1,16 @@
+<div class="game-carousel">
+  <ngb-carousel *ngIf="carouselGames">
+    <ng-template ngbSlide *ngFor="let game of carouselGames">
+      <div class="picsum-img-wrapper" (click)="redirectToGame(game.id)">
+        <img
+          [src]="'data:image/jpg;base64, ' + game.image | safeHtml"
+          class="game-carousel-image"
+          alt="Random first slide"
+        />
+      </div>
+      <div class="carousel-caption">
+        <h3 class="game-carousel-image-title">{{ game.title }}</h3>
+      </div>
+    </ng-template>
+  </ngb-carousel>
+</div>

@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { take } from 'rxjs/operators';
 import { IGame } from './interfaces/IGame';
 import { environment } from 'src/environments/environment';
+import { IPagedList } from '../shared/interfaces/IPagedList';
 
 const BASE_URL: string = `${environment.baseUrls.server}${environment.baseUrls.v1ApiUrl}`;
 
@@ -13,8 +14,8 @@ const BASE_URL: string = `${environment.baseUrls.server}${environment.baseUrls.v
 export class GameService {
   constructor(private _http: HttpClient) {}
 
-  getAll(): Observable<IGame[]> {
-    return this._http.get<IGame[]>(`${BASE_URL}Game`).pipe(take(1));
+  getAll(): Observable<IPagedList<IGame>> {
+    return this._http.get<IPagedList<IGame>>(`${BASE_URL}Game`).pipe(take(1));
   }
 
   getById(id: number): Observable<IGame> {

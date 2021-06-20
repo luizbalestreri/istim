@@ -4,6 +4,7 @@ export interface IGame {
   description: string;
   releaseDate: Date;
   videoURL: string;
+  image: string;
   categoryId: number;
   genreId: number;
   ageRangeId: number;

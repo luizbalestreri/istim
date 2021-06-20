@@ -30,7 +30,7 @@ export class GameComponent extends AppBase {
 
   setDataSource(): void {
     this._gameService.getAll().subscribe((res) => {
-      this.dataSource = new MatTableDataSource(res);
+      this.dataSource = new MatTableDataSource(res.data);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
     });

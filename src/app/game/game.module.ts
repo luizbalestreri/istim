@@ -14,16 +14,19 @@ import { MatTableModule } from '@angular/material/table';
 import { RequestInterceptor } from '../core/interceptors/request-interceptor';
 import { CreateOrEditGameComponent } from './create-or-edit/create-or-edit-game.component';
 import { GameRoutingModule } from './game-routing.module';
+import { SharedModule } from './../shared/shared.module';
 import { GameComponent } from './game.component';
+import { ViewGameComponent } from './view/view-game.component';
 import { GameService } from './game.service';
 import { MatNativeDateModule } from '@angular/material/core';
 
 @NgModule({
-  declarations: [GameComponent, CreateOrEditGameComponent],
+  declarations: [GameComponent, CreateOrEditGameComponent, ViewGameComponent],
   imports: [
     CommonModule,
     GameRoutingModule,
     HttpClientModule,
+    SharedModule,
     FormsModule,
     ReactiveFormsModule,
     MatIconModule,

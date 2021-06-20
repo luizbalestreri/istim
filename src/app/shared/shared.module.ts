@@ -1,3 +1,4 @@
+import { SafeHtmlPipe } from './pipes/safe-html.pipe';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
@@ -25,12 +26,12 @@ import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dial
     NavBarComponent,
     SnackbarComponent,
     ConfirmDialogComponent,
+    SafeHtmlPipe,
   ],
   imports: [
     CommonModule,
     NgbModule,
     FormsModule,
-    BrowserModule,
     NgbDropdownModule,
     NgbCollapseModule,
     ReactiveFormsModule,
@@ -40,6 +41,6 @@ import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dial
     MatMenuModule,
     MatDialogModule,
   ],
-  exports: [ColumnOneComponent],
+  exports: [ColumnOneComponent, SafeHtmlPipe],
 })
 export class SharedModule {}

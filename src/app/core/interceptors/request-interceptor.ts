@@ -30,6 +30,8 @@ export class RequestInterceptor implements HttpInterceptor {
         catchError((error) => {
           if (error instanceof HttpErrorResponse)
             if (error.status === 401) this._router.navigateByUrl('/login');
+            else if (error.status === 404)
+              this._router.navigateByUrl('/not-found');
 
           return throwError(error);
         })
