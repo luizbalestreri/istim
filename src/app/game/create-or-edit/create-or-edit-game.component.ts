@@ -1,5 +1,6 @@
+import { DatePipe } from '@angular/common';
 import { Component, Inject, Injector, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { AppBase } from 'src/app/shared/components/app-base.component';
 import { GameService } from '../game.service';
@@ -11,6 +12,7 @@ import { IGame } from '../interfaces/IGame';
 })
 export class CreateOrEditGameComponent extends AppBase implements OnInit {
   title: string = '';
+  today: string | null = new DatePipe("en-US").transform(new Date(), "dd-MM-yyyy");
 
   gameForm: FormGroup = this._formBuilder.group({
     id: [],
@@ -18,6 +20,13 @@ export class CreateOrEditGameComponent extends AppBase implements OnInit {
       '',
       [Validators.required, Validators.minLength(2), Validators.maxLength(60)],
     ],
+    description: ['',
+    [Validators.required, Validators.minLength(2), Validators.maxLength(60)],],
+    releaseDate: ['', Validators.required],
+    videoURL: ['',
+    [Validators.required, Validators.minLength(2), Validators.maxLength(60)],],
+    categoryId: ['',[Validators.required, Validators.minLength(2), Validators.maxLength(60)],],
+    ageRangeId: ['',[Validators.required, Validators.minLength(2), Validators.maxLength(60)],]
   });
 
   constructor(

@@ -6,6 +6,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
+import {MatDatepickerModule} from '@angular/material/datepicker';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
@@ -15,6 +16,7 @@ import { CreateOrEditGameComponent } from './create-or-edit/create-or-edit-game.
 import { GameRoutingModule } from './game-routing.module';
 import { GameComponent } from './game.component';
 import { GameService } from './game.service';
+import { MatNativeDateModule } from '@angular/material/core';
 
 @NgModule({
   declarations: [GameComponent, CreateOrEditGameComponent],
@@ -31,7 +33,7 @@ import { GameService } from './game.service';
     MatPaginatorModule,
     MatSortModule,
     MatMenuModule,
-    MatDialogModule,
+    MatDialogModule
   ],
   providers: [
     GameService,
