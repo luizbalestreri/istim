@@ -1,5 +1,10 @@
 import { Component, Inject, Injector, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { AppBase } from 'src/app/shared/components/app-base.component';
 import { GameService } from '../game.service';
@@ -12,22 +17,26 @@ import { IGame } from '../interfaces/IGame';
 export class CreateOrEditGameComponent extends AppBase implements OnInit {
   title: string = '';
   imagem: string | ArrayBuffer | null = '';
-  
+
   gameForm: FormGroup = this._formBuilder.group({
     id: [],
     title: [
       '',
       [Validators.required, Validators.minLength(2), Validators.maxLength(60)],
     ],
-    description: ['',
-    [Validators.required, Validators.minLength(2), Validators.maxLength(60)],],
+    description: [
+      '',
+      [Validators.required, Validators.minLength(2), Validators.maxLength(60)],
+    ],
     value: ['', Validators.required],
     releaseDate: ['', Validators.required],
-    videoURL: ['',
-    [Validators.required, Validators.minLength(2), Validators.maxLength(60)],],
-    categoryId: ['',[Validators.required,  Validators.maxLength(60)],],
-    ageRangeId: ['',[Validators.required,  Validators.maxLength(60)],],
-    image: [this.imagem]
+    videoURL: [
+      '',
+      [Validators.required, Validators.minLength(2), Validators.maxLength(60)],
+    ],
+    categoryId: ['', [Validators.required, Validators.maxLength(60)]],
+    ageRangeId: ['', [Validators.required, Validators.maxLength(60)]],
+    image: [this.imagem],
   });
 
   constructor(
@@ -45,9 +54,11 @@ export class CreateOrEditGameComponent extends AppBase implements OnInit {
     const reader = new FileReader();
     reader.readAsDataURL(file);
     reader.onload = () => {
-        this.imagem = reader.result;
+      this.gameForm
+        .get('image')
+        ?.setValue(reader.result?.toString().split('base64,')[1]);
     };
-}
+  }
   ngOnInit(): void {
     if (this.game) {
       this.title = `Editar: ${this.game.title}`;
@@ -64,6 +75,9 @@ export class CreateOrEditGameComponent extends AppBase implements OnInit {
   save(): void {
     let data: IGame = this.gameForm.getRawValue();
     data.id = +data.id;
+    data.ageRangeId = +data.ageRangeId;
+    data.categoryId = +data.categoryId;
+    data.value = +data.value;
 
     if (this.game) {
       this._gameService.edit(data).subscribe(
