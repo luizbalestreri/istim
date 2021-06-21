@@ -1,4 +1,3 @@
-import { DatePipe } from '@angular/common';
 import { Component, Inject, Injector, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
@@ -12,8 +11,8 @@ import { IGame } from '../interfaces/IGame';
 })
 export class CreateOrEditGameComponent extends AppBase implements OnInit {
   title: string = '';
-  today: string | null = new DatePipe("en-US").transform(new Date(), "dd-MM-yyyy");
-
+  imagem: string | ArrayBuffer | null = '';
+  
   gameForm: FormGroup = this._formBuilder.group({
     id: [],
     title: [
@@ -22,11 +21,13 @@ export class CreateOrEditGameComponent extends AppBase implements OnInit {
     ],
     description: ['',
     [Validators.required, Validators.minLength(2), Validators.maxLength(60)],],
+    value: ['', Validators.required],
     releaseDate: ['', Validators.required],
     videoURL: ['',
     [Validators.required, Validators.minLength(2), Validators.maxLength(60)],],
-    categoryId: ['',[Validators.required, Validators.minLength(2), Validators.maxLength(60)],],
-    ageRangeId: ['',[Validators.required, Validators.minLength(2), Validators.maxLength(60)],]
+    categoryId: ['',[Validators.required,  Validators.maxLength(60)],],
+    ageRangeId: ['',[Validators.required,  Validators.maxLength(60)],],
+    image: [this.imagem]
   });
 
   constructor(
@@ -39,6 +40,14 @@ export class CreateOrEditGameComponent extends AppBase implements OnInit {
     super(_injector);
   }
 
+  processFile(event) {
+    const file = event.target.files[0];
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => {
+        this.imagem = reader.result;
+    };
+}
   ngOnInit(): void {
     if (this.game) {
       this.title = `Editar: ${this.game.title}`;

@@ -28,6 +28,15 @@
         Informe no máximo 60 caracteres
       </mat-error>
     </mat-form-field>
+
+    <mat-form-field>  
+      <mat-label>Preço</mat-label>
+      <input type="number" matInput formControlName="value" />
+      <mat-error *ngIf="gameForm.get('value')?.hasError('required')">
+        Este campo é <strong>obrigatório</strong>
+      </mat-error>
+    </mat-form-field>
+
     <mat-form-field>
       <mat-label>Data de lançamento</mat-label>
       <input type="date" matInput formControlName="releaseDate" />
@@ -76,7 +85,7 @@
     </mat-form-field>
   </form>
 </mat-dialog-content>
-
+<span>Inserir imagem:  </span><input type="file" (change)="processFile($event)">
 
 <hr />
 <mat-dialog-actions>
