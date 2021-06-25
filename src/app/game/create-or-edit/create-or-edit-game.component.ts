@@ -1,3 +1,6 @@
+import { IAgeRange } from 'src/app/ageRange/Interfaces/IAgeRange';
+import { CategoryService } from './../../category/category.service';
+import { AgeRangeService } from 'src/app/ageRange/ageRange.service';
 import { Component, Inject, Injector, OnInit } from '@angular/core';
 import {
   FormBuilder,
@@ -9,12 +12,16 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { AppBase } from 'src/app/shared/components/app-base.component';
 import { GameService } from '../game.service';
 import { IGame } from '../interfaces/IGame';
+import { ICategory } from 'src/app/category/Interfaces/ICategory';
 
 @Component({
   templateUrl: './create-or-edit-game.component.html',
   styleUrls: ['./create-or-edit-game.component.scss'],
 })
 export class CreateOrEditGameComponent extends AppBase implements OnInit {
+  toppings = new FormControl();
+  categoryList: ICategory[] = [];
+  ageRangeList: IAgeRange[] = [];  
   title: string = '';
   imagem: string | ArrayBuffer | null = '';
 
@@ -44,7 +51,9 @@ export class CreateOrEditGameComponent extends AppBase implements OnInit {
     @Inject(MAT_DIALOG_DATA) public game: IGame,
     public dialogRef: MatDialogRef<CreateOrEditGameComponent>,
     private _gameService: GameService,
-    private _formBuilder: FormBuilder
+    private _formBuilder: FormBuilder,
+    private _catservice: CategoryService,
+    private _ageservice: AgeRangeService,
   ) {
     super(_injector);
   }
@@ -59,6 +68,7 @@ export class CreateOrEditGameComponent extends AppBase implements OnInit {
         ?.setValue(reader.result?.toString().split('base64,')[1]);
     };
   }
+
   ngOnInit(): void {
     if (this.game) {
       this.title = `Editar: ${this.game.title}`;
@@ -66,6 +76,15 @@ export class CreateOrEditGameComponent extends AppBase implements OnInit {
     } else {
       this.title = 'Cadastrar Jogo';
     }
+    this._catservice.getAll().subscribe(catList => {
+      this.categoryList = catList;
+    });
+
+    this._ageservice.getAll().subscribe(ageList => {
+      this.ageRangeList = ageList;
+    });
+    
+
   }
 
   close(saved?: boolean): void {

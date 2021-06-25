@@ -12,6 +12,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AuthService } from './core/auth/auth.service';
+import {MatSelectModule} from '@angular/material/select';
 
 @NgModule({
   declarations: [AppComponent],
@@ -28,6 +29,7 @@ import { AuthService } from './core/auth/auth.service';
     ReactiveFormsModule,
     BrowserAnimationsModule,
     MatSnackBarModule,
+    MatSelectModule
   ],
   providers: [AuthService],
   bootstrap: [AppComponent],

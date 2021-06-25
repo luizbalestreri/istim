@@ -57,36 +57,27 @@
         Informe no máximo 60 caracteres
       </mat-error>
     </mat-form-field>
+
     <mat-form-field>
-      <mat-label>Categoria</mat-label>
-      <input type="text" matInput formControlName="categoryId" />
-      <mat-error *ngIf="gameForm.get('categoryId')?.hasError('required')">
-        Este campo é <strong>obrigatório</strong>
-      </mat-error>
-      <mat-error *ngIf="gameForm.get('categoryId')?.hasError('minlength')">
-        Informe no mínimo 2 caracteres
-      </mat-error>
-      <mat-error *ngIf="gameForm.get('categoryId')?.hasError('maxlength')">
-        Informe no máximo 60 caracteres
-      </mat-error>
+    <mat-label>Categorias</mat-label>
+    <mat-select formControlName="categoryId">
+      <mat-option *ngFor="let cat of categoryList" [value]="cat.id">{{
+        cat.title}}</mat-option>
+    </mat-select>
     </mat-form-field>
+
     <mat-form-field>
-      <mat-label>Faixa etária</mat-label>
-      <input type="text" matInput formControlName="ageRangeId" />
-      <mat-error *ngIf="gameForm.get('title')?.hasError('required')">
-        Este campo é <strong>obrigatório</strong>
-      </mat-error>
-      <mat-error *ngIf="gameForm.get('title')?.hasError('minlength')">
-        Informe no mínimo 2 caracteres
-      </mat-error>
-      <mat-error *ngIf="gameForm.get('title')?.hasError('maxlength')">
-        Informe no máximo 60 caracteres
-      </mat-error>
+    <mat-label>Classificação etária</mat-label>
+    <mat-select formControlName="ageRangeId">
+      <mat-option *ngFor="let age of ageRangeList" [value]="age.id">{{
+        age.title}}</mat-option>
+    </mat-select>
     </mat-form-field>
+    <span>Inserir imagem: </span
+    ><input type="file" (change)="processFile($event)" />
   </form>
 </mat-dialog-content>
-<span>Inserir imagem: </span
-><input type="file" (change)="processFile($event)" />
+
 
 <hr />
 <mat-dialog-actions>
