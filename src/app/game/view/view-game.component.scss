@@ -49,3 +49,21 @@ ul {
 .game-info-item:first-child {
   margin-top: 10px;
 }
+
+.card-with-value-title {
+  font-size: 1.8rem;
+}
+
+.card-with-value-subtitle {
+  font-size: 1.3rem;
+  padding-top: 5px;
+}
+
+.card-with-value-actions {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.card-with-age-range-title {
+  font-size: 1rem;
+}
