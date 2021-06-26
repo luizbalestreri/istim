@@ -4,6 +4,14 @@
   flex-direction: column;
   justify-content: space-between;
 }
+.bg-dar{
+  color: white;
+  a:link{ color: white;}
+}
 
+.alpha { color: purple; }
+
+// From the Sass map with our `color()` function
+.beta { color: color("purple"); }
 // @media (max-width: 576px) {
 // }

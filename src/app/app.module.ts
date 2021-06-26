@@ -13,9 +13,11 @@ import { CommonModule } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AuthService } from './core/auth/auth.service';
 import {MatSelectModule} from '@angular/material/select';
+import { BibliotecaComponent } from './biblioteca/biblioteca.component';
+import { ProfileComponent } from './profile/profile.component';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, BibliotecaComponent, ProfileComponent],
   imports: [
     CommonModule,
     BrowserModule,
