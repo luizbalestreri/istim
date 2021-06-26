@@ -4,9 +4,12 @@
   flex-direction: column;
   justify-content: space-between;
 }
-.bg-dar{
+.bg-dark{
   color: white;
   a:link{ color: white;}
+  a:hover{ color: white;
+  background: #3c3c3c;}
+  background-color: #3c3c3c;
 }
 
 .alpha { color: purple; }

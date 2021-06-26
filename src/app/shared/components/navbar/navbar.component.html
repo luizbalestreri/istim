@@ -16,49 +16,15 @@
       id="navbarSupportedContent"
     >
     <div class="pb-lg-0 flex-lg-row menu-items">
-    
     <div>
-          <ul class="navbar-nav w-100 mb-2 mb-lg-0">
-            <li class="nav-item">
-              <a class="nav-link active" aria-current="page" routerLink="">
-                Loja</a
-              >
-            </li>
-            <li class="nav-item-dark navbar-expand navbar-dark bg-dark" ngbDropdown placement="bottom-right">
-              <a class="nav-link" tabindex="0" ngbDropdownToggle id="navbarDropdown3" role="button">
-                Biblioteca
-              </a>
-              <div ngbDropdownMenu aria-labelledby="navbarDropdown3" class="dropdown-menu-dark">
-                <a ngbDropdownItem href="#" (click)="$event.preventDefault()">Action</a>
-                <a ngbDropdownItem href="#" (click)="$event.preventDefault()">Another action</a>
-                <a ngbDropdownItem href="#" (click)="$event.preventDefault()">Something else here</a>
-              </div>
-            </li>
-              <li></li>
-            <li class="nav-item">
-              <a class="nav-link active" aria-current="page" routerLink="login"
-                >Perfil</a
-              >
-            </li>
-          </ul>
-        </div>
-        <div>
-          <form class="d-flex">
-            <input
-              class="form-control me-2"
-              type="search"
-              [formControl]="search"
-              placeholder="Pesquisar"
-              aria-label="Search"
-            />
-            <button
-              class="btn btn-outline-success"
-              (click)="searchChange.emit(search.value)"
-            >
-              Pesquisar
-            </button>
-          </form>
-        </div>
+    <button mat-button>Jogos</button>
+    <button mat-button>Bibiblioteca</button>
+    <button mat-button [matMenuTriggerFor]="menu">Perfil</button>
+    <mat-menu #menu="matMenu" class = "bg-dark">
+      <button mat-menu-item class = "bg-dark">Item 1</button>
+      <button mat-menu-item class = "bg-dark">Item 2</button>
+    </mat-menu>
+    </div>
         <div>
           <button
             *ngIf="!userIsLogged()"

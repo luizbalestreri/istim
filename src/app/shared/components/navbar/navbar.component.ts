@@ -15,10 +15,6 @@ import { UserService } from './../../../core/user/user.service';
   selector: 'nav-bar',
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.scss'],
-  styles: [`
-    ::ng-deep .dropdown-menu.show { background:#3c3c3c;}
-    ::ng-deep .dropdown-item { color:#00ccff !important; }
-  `]
 })
 export class NavBarComponent implements OnInit {
   username: string = '';
