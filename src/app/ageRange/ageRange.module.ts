@@ -13,6 +13,7 @@ import { MatSortModule } from '@angular/material/sort';
 import { AgeRangeComponent } from './ageRange.component';
 import { AgeRangeRoutingModule } from './ageRange-routing.module';
 import { AgeRangeService } from './ageRange.service';
+import { RequestInterceptor } from '../core/interceptors/request-interceptor';
 
 @NgModule({
   declarations: [AgeRangeComponent],
@@ -33,7 +34,11 @@ import { AgeRangeService } from './ageRange.service';
   ],
   providers: [
     AgeRangeService,
-    
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: RequestInterceptor,
+      multi: true,
+    },
   ],
 })
 export class CategoryModule {}

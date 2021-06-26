@@ -32,8 +32,61 @@
           <p class="game-info-item">
             Data de lançamento: {{ game?.releaseDate | date: "dd/MM/yyyy" }}
           </p>
+          <p class="game-info-item">Categoria: {{ category }}</p>
         </li>
       </ul>
+    </div>
+  </div>
+  <div class="row mt-3">
+    <div class="col-sm-8">
+      <mat-card>
+        <mat-card-header>
+          <mat-card-title class="card-with-value-title"
+            >Comprar {{ game?.title }}</mat-card-title
+          >
+          <mat-card-subtitle class="card-with-value-subtitle"
+            >Valor: R$
+            {{ game?.value?.toFixed(2)?.replace(".", ",") }}</mat-card-subtitle
+          >
+        </mat-card-header>
+        <mat-card-actions class="card-with-value-actions">
+          <button mat-raised-button color="primary">
+            <mat-icon>add_shopping_cart</mat-icon> Carrinho
+          </button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+    <div class="col-sm-4">
+      <mat-card>
+        <mat-card-header *ngIf="ageRange != 0">
+          <mat-card-title class="card-with-age-range-title"
+            >CLASSIFICAÇÃO INDICATIVA: {{ ageRange }} ANOS</mat-card-title
+          >
+        </mat-card-header>
+        <mat-card-content class="ml-3">
+          <img
+            *ngIf="ageRange != 0"
+            [src]="
+              'https://store.cloudflare.steamstatic.com/public/shared/images/game_ratings/DEJUS/' +
+              ageRange +
+              '.png'
+            "
+            alt="Imagem da faixa de idade permitida"
+          />
+
+          <img
+            *ngIf="ageRange == 0"
+            src="
+              https://store.cloudflare.steamstatic.com/public/shared/images/game_ratings/DEJUS/l.png
+            "
+            alt="Imagem da faixa de idade permitida"
+          />
+
+          <p class="mt-1">
+            Classificação: Coordenação de Classificação Indicativa
+          </p>
+        </mat-card-content>
+      </mat-card>
     </div>
   </div>
 </div>
