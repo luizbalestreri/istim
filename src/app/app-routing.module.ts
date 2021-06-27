@@ -37,6 +37,14 @@ const routes: Routes = [
     canActivate: [],
   },
   {
+    path: 'carrinho',
+    loadChildren: () =>
+      import('./shopping-cart/shopping-cart.module').then(
+        (x) => x.ShoppingCartModule
+      ),
+    canActivate: [],
+  },
+  {
     path: 'not-found',
     component: NotFoundComponent,
   },
