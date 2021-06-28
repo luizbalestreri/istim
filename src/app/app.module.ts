@@ -15,6 +15,7 @@ import { AuthService } from './core/auth/auth.service';
 import {MatSelectModule} from '@angular/material/select';
 import { BibliotecaComponent } from './biblioteca/biblioteca.component';
 import { ProfileComponent } from './profile/profile.component';
+import { StoreComponent } from './store/store.component';
 
 @NgModule({
   declarations: [AppComponent],

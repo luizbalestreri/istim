@@ -32,8 +32,23 @@ const routes: Routes = [
     canActivate: [AdminGuard],
   },
   {
+    path: 'profile',
+    loadChildren: () => import('./profile/profile.module').then((x) => x.ProfileModule),
+    canActivate: [],
+  },
+  {
+    path: 'biblioteca',
+    loadChildren: () => import('./biblioteca/biblioteca.module').then((x) => x.BibliotecaModule),
+    canActivate: [],
+  },
+  {
     path: 'jogos',
     loadChildren: () => import('./game/game.module').then((x) => x.GameModule),
+    canActivate: [],
+  },
+  {
+    path: 'loja',
+    loadChildren: () => import('./store/store.module').then((x) => x.StoreModule),
     canActivate: [],
   },
   {
