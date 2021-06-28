@@ -17,7 +17,7 @@ import { BibliotecaComponent } from './biblioteca/biblioteca.component';
 import { ProfileComponent } from './profile/profile.component';
 
 @NgModule({
-  declarations: [AppComponent, BibliotecaComponent, ProfileComponent],
+  declarations: [AppComponent],
   imports: [
     CommonModule,
     BrowserModule,

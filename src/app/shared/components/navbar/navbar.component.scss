@@ -6,12 +6,12 @@
 }
 .bg-dark{
   color: white;
-  a:link{ color: white;}
-  a:hover{ color: white;
-  background: #3c3c3c;}
-  background-color: #3c3c3c;
+
 }
 
+.menu-item{
+  color: white;
+}
 .alpha { color: purple; }
 
 // From the Sass map with our `color()` function
