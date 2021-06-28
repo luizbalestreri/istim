@@ -50,7 +50,11 @@
           >
         </mat-card-header>
         <mat-card-actions class="card-with-value-actions">
-          <button mat-raised-button color="primary">
+          <button
+            mat-raised-button
+            color="primary"
+            (click)="addItemToShoppingCart()"
+          >
             <mat-icon>add_shopping_cart</mat-icon> Carrinho
           </button>
         </mat-card-actions>

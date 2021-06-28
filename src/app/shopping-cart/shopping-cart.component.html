@@ -1,0 +1,40 @@
+<h2 class="shopping-cart-title">SEU CARRINHO DE COMPRAS</h2>
+<mat-card *ngFor="let item of items; let i = index" class="mb-3">
+  <mat-card-content class="card-shopping-cart-content">
+    <div class="card-shopping-cart-item-info">
+      <img
+        [src]="'data:image/jpg;base64, ' + item.image | safeHtml"
+        class="card-shopping-cart-image"
+        alt="Imagem do jogo"
+      />
+      <p class="card-shopping-cart-item-title ml-3">{{ item.title }}</p>
+    </div>
+    <div class="card-shopping-cart-item-value-and-remove">
+      <p class="card-shopping-cart-item-value">
+        R$ {{ item.value.toFixed(2).replace(".", ",") }}
+      </p>
+      <button
+        mat-raised-button
+        color="warn"
+        (click)="removeItemFromShoppingCart(i)"
+      >
+        <mat-icon>delete</mat-icon> Remover
+      </button>
+    </div>
+  </mat-card-content>
+</mat-card>
+
+<mat-card>
+  <mat-card-content>
+    <p class="card-shopping-cart-totalizer-message">
+      Esta compra é para você ou é um presente? Escolha um para continuar com a
+      finalização do pedido.
+    </p>
+  </mat-card-content>
+  <mat-card-actions class="card-shopping-cart-totalizer-actions">
+    <button mat-raised-button color="primary">
+      Comprar para a minha conta
+    </button>
+    <button mat-raised-button color="primary">Comprar como presente</button>
+  </mat-card-actions>
+</mat-card>

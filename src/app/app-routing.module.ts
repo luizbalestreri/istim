@@ -37,13 +37,11 @@ const routes: Routes = [
     canActivate: [],
   },
   {
-    path: 'biblioteca',
-    loadChildren: () => import('./biblioteca/biblioteca.module').then((x) => x.BibliotecaModule),
-    canActivate: [],
-  },
-  {
-    path: 'profile',
-    loadChildren: () => import('./profile/profile.module').then((x) => x.ProfileModule),
+    path: 'carrinho',
+    loadChildren: () =>
+      import('./shopping-cart/shopping-cart.module').then(
+        (x) => x.ShoppingCartModule
+      ),
     canActivate: [],
   },
   {

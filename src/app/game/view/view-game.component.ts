@@ -5,6 +5,8 @@ import { GameService } from './../game.service';
 import { CategoryService } from './../../category/category.service';
 import { IGame } from './../interfaces/IGame';
 import { AgeRangeService } from 'src/app/ageRange/ageRange.service';
+import { ShoppingCartService } from 'src/app/shopping-cart/shopping-cart.service';
+import { IShoppingCartItem } from '../../shopping-cart/interfaces/IShoppingCartItem';
 
 @Component({
   templateUrl: './view-game.component.html',
@@ -15,6 +17,7 @@ export class ViewGameComponent implements OnInit {
     private _activedRoute: ActivatedRoute,
     private _router: Router,
     private _gameService: GameService,
+    private _shoppingCartService: ShoppingCartService,
     private _categoryService: CategoryService,
     private _ageRangeService: AgeRangeService
   ) {}
@@ -50,5 +53,16 @@ export class ViewGameComponent implements OnInit {
         }
       );
     });
+  }
+
+  addItemToShoppingCart(): void {
+    let data: IShoppingCartItem = {
+      gameId: this.game.id,
+      value: this.game.value,
+      title: this.game.title,
+      image: this.game.image,
+    };
+
+    this._shoppingCartService.addItemToShoppingCart(data);
   }
 }
