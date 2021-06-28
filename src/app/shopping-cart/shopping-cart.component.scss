@@ -9,12 +9,50 @@
   align-items: center;
 }
 
-.card-shopping-cart-game-info {
+.card-shopping-cart-item-info {
   display: flex;
   align-items: center;
 }
 
-.card-shopping-cart-actions {
+.card-shopping-cart-image {
+  width: 175px;
+  height: auto;
+}
+
+.card-shopping-cart-item-title,
+.card-shopping-cart-item-value {
+  font-size: 1.5rem;
+}
+
+.card-shopping-cart-item-value-and-remove {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.card-shopping-cart-totalizer-message {
+  font-size: 1.2rem;
+}
+
+.card-shopping-cart-totalizer-actions {
   display: flex;
   justify-content: flex-end;
+}
+
+@media (max-width: 600px) {
+  .card-shopping-cart-content {
+    flex-direction: column;
+  }
+
+  .card-shopping-cart-item-info {
+    flex-direction: column;
+  }
+
+  .card-shopping-cart-item-title {
+    margin-top: 10px;
+  }
+
+  .card-shopping-cart-item-value-and-remove {
+    margin-top: 20px;
+  }
 }

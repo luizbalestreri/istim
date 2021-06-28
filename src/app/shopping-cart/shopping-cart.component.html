@@ -1,24 +1,40 @@
 <h2 class="shopping-cart-title">SEU CARRINHO DE COMPRAS</h2>
-<mat-card>
+<mat-card *ngFor="let item of items; let i = index" class="mb-3">
   <mat-card-content class="card-shopping-cart-content">
-    <div class="card-shopping-cart-game-info">
+    <div class="card-shopping-cart-item-info">
       <img
-        src="https://store.cloudflare.steamstatic.com/public/shared/images/game_ratings/DEJUS/12.png"
+        [src]="'data:image/jpg;base64, ' + item.image | safeHtml"
+        class="card-shopping-cart-image"
         alt="Imagem do jogo"
       />
-      <p class="ml-3">Jogo Xyz</p>
+      <p class="card-shopping-cart-item-title ml-3">{{ item.title }}</p>
     </div>
-    <div>
-      <p>Valor: R$ 10,00</p>
+    <div class="card-shopping-cart-item-value-and-remove">
+      <p class="card-shopping-cart-item-value">
+        R$ {{ item.value.toFixed(2).replace(".", ",") }}
+      </p>
+      <button
+        mat-raised-button
+        color="warn"
+        (click)="removeItemFromShoppingCart(i)"
+      >
+        <mat-icon>delete</mat-icon> Remover
+      </button>
     </div>
   </mat-card-content>
-  <mat-card-actions class="card-shopping-cart-actions">
-    <button
-      mat-raised-button
-      color="warn"
-      (click)="removeItemFromShoppingCart(0)"
-    >
-      <mat-icon>delete</mat-icon> Remover
+</mat-card>
+
+<mat-card>
+  <mat-card-content>
+    <p class="card-shopping-cart-totalizer-message">
+      Esta compra é para você ou é um presente? Escolha um para continuar com a
+      finalização do pedido.
+    </p>
+  </mat-card-content>
+  <mat-card-actions class="card-shopping-cart-totalizer-actions">
+    <button mat-raised-button color="primary">
+      Comprar para a minha conta
     </button>
+    <button mat-raised-button color="primary">Comprar como presente</button>
   </mat-card-actions>
 </mat-card>

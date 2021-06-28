@@ -19,6 +19,10 @@ export class ShoppingCartService {
       : [];
 
     shoppingCartItems.push(shoppingCartItem);
+    this.setItemsToShoppingCart(shoppingCartItems);
+  }
+
+  setItemsToShoppingCart(shoppingCartItems: IShoppingCartItem[]): void {
     localStorage.setItem(KEY, JSON.stringify(shoppingCartItems));
   }
 
@@ -26,12 +30,7 @@ export class ShoppingCartService {
     return localStorage.getItem(KEY);
   }
 
-  removeItemFromShoppingCart(index: number): void {
-    let shoppingCartItems: IShoppingCartItem[] = JSON.parse(
-      this.getShoppingCart()
-    );
-
-    shoppingCartItems.splice(index, 1);
-    localStorage.setItem(KEY, JSON.stringify(shoppingCartItems));
+  removeShoppingCart(): void {
+    localStorage.removeItem(KEY);
   }
 }
