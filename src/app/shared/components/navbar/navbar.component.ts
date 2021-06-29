@@ -39,6 +39,10 @@ export class NavBarComponent implements OnInit {
     return this._userService.isLogged();
   }
 
+  isAdmin(): boolean {
+    return this._userService.isAdmin();
+  }
+
   logout(): void {
     this._userService.logout();
   }
