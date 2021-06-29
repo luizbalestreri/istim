@@ -18,7 +18,17 @@ export class ShoppingCartService {
       ? JSON.parse(this.getShoppingCart())
       : [];
 
-    shoppingCartItems.push(shoppingCartItem);
+    let itemExists: boolean = false;
+
+    for (let i = 0; i < shoppingCartItems.length; i++) {
+      if (shoppingCartItems[i].gameId == shoppingCartItem.gameId) {
+        itemExists = true;
+        shoppingCartItems[i] = shoppingCartItem;
+      }
+    }
+
+    if (!itemExists) shoppingCartItems.push(shoppingCartItem);
+
     this.setItemsToShoppingCart(shoppingCartItems);
   }
 

@@ -21,13 +21,24 @@
 
 .card-shopping-cart-item-title,
 .card-shopping-cart-item-value {
-  font-size: 1.5rem;
+  font-size: 1.2rem;
 }
 
 .card-shopping-cart-item-value-and-remove {
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+.card-shopping-cart-totalizer {
+  display: flex;
+  justify-content: space-between;
+}
+
+.card-shopping-cart-totalizer-total {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-bottom: 25px;
 }
 
 .card-shopping-cart-totalizer-message {
@@ -54,5 +65,14 @@
 
   .card-shopping-cart-item-value-and-remove {
     margin-top: 20px;
+  }
+
+  .card-shopping-cart-totalizer-actions {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .card-shopping-cart-totalizer-actions > button {
+    margin-bottom: 10px;
   }
 }
