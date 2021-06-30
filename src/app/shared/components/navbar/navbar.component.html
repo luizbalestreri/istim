@@ -19,10 +19,16 @@
     <div>
     <button mat-button routerLink="loja">Loja</button>
     <button mat-button routerLink="biblioteca">Biblioteca</button>
-    <button mat-button [matMenuTriggerFor]="menu">{{username}}</button>
-    <mat-menu #menu="matMenu" class = "bg-dark">
+    <button mat-button [matMenuTriggerFor]="menuProfile">{{username}}</button>
+    <mat-menu #menuProfile="matMenu" class = "bg-dark">
       <button mat-menu-item class = "menu-item" routerLink="profile">Ver perfil</button>
       <button mat-menu-item class = "menu-item">Item 2</button>
+    </mat-menu>
+    <button *ngIf="isAdmin()" mat-button [matMenuTriggerFor]="menuAdmin">Menu Admin</button>
+    <mat-menu #menuAdmin="matMenu" class = "bg-dark">
+      <button mat-menu-item class= "menu-item" routerLink="categorias"
+        >Categorias</button>
+      <button mat-menu-item class = "menu-item" routerLink="jogos">Jogos</button>
     </mat-menu>
     </div>
         <div>
