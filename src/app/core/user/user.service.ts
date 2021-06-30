@@ -29,6 +29,11 @@ export class UserService {
 
   logout(): void {
     this._tokenService.removeToken();
+    this.user$.next({
+      role: '',
+      username: '',
+      email: '',
+    });
     this._router.navigate(['/']);
   }
 
