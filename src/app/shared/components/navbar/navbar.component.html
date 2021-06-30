@@ -19,7 +19,7 @@
     <div>
     <button mat-button routerLink="loja">Loja</button>
     <button mat-button routerLink="biblioteca">Biblioteca</button>
-    <button mat-button [matMenuTriggerFor]="menuProfile">{{username}}</button>
+    <button mat-button *ngIf = "userIsLogged()" [matMenuTriggerFor]="menuProfile">{{username}}</button>
     <mat-menu #menuProfile="matMenu" class = "bg-dark">
       <button mat-menu-item class = "menu-item" routerLink="profile">Ver perfil</button>
       <button mat-menu-item class = "menu-item">Item 2</button>
