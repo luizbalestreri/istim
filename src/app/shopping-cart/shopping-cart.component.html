@@ -26,15 +26,23 @@
 
 <mat-card>
   <mat-card-content>
-    <p class="card-shopping-cart-totalizer-message">
+    <div class="card-shopping-cart-totalizer">
+      <p class="card-shopping-cart-totalizer-total">Total estimado</p>
+      <p class="card-shopping-cart-totalizer-total">
+        R$ {{ totalItems.toFixed(2).replace(".", ",") }}
+      </p>
+    </div>
+    <p class="card-shopping-cart-totalizer-message" *ngIf="items.length > 0">
       Esta compra é para você ou é um presente? Escolha um para continuar com a
       finalização do pedido.
     </p>
   </mat-card-content>
   <mat-card-actions class="card-shopping-cart-totalizer-actions">
-    <button mat-raised-button color="primary">
+    <button mat-raised-button color="primary" [disabled]="items.length <= 0">
       Comprar para a minha conta
     </button>
-    <button mat-raised-button color="primary">Comprar como presente</button>
+    <button mat-raised-button color="primary" [disabled]="items.length <= 0">
+      Comprar como presente
+    </button>
   </mat-card-actions>
 </mat-card>

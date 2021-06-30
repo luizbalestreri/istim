@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Injector } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
+import { AppBase } from 'src/app/shared/components/app-base.component';
 import { GameService } from './../game.service';
 import { CategoryService } from './../../category/category.service';
 import { IGame } from './../interfaces/IGame';
@@ -12,15 +13,18 @@ import { IShoppingCartItem } from '../../shopping-cart/interfaces/IShoppingCartI
   templateUrl: './view-game.component.html',
   styleUrls: ['./view-game.component.scss'],
 })
-export class ViewGameComponent implements OnInit {
+export class ViewGameComponent extends AppBase implements OnInit {
   constructor(
+    _injector: Injector,
     private _activedRoute: ActivatedRoute,
     private _router: Router,
     private _gameService: GameService,
     private _shoppingCartService: ShoppingCartService,
     private _categoryService: CategoryService,
     private _ageRangeService: AgeRangeService
-  ) {}
+  ) {
+    super(_injector);
+  }
 
   game!: IGame;
   ageRange!: number;
@@ -64,5 +68,7 @@ export class ViewGameComponent implements OnInit {
     };
 
     this._shoppingCartService.addItemToShoppingCart(data);
+    this._snackbarService.success('Jogo adicionado ao carrinho!');
+    this._router.navigate(['carrinho']);
   }
 }
