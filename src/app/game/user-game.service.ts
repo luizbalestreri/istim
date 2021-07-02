@@ -24,8 +24,8 @@ export class UserGameService {
     return this._http.get<IUserGame>(`${BASE_URL}UserGame/${id}`).pipe(take(1));
   }
 
-  create(game: IUserGame): Observable<any> {
-    return this._http.post(`${BASE_URL}UserGame`, game).pipe(take(1));
+  create(games: IUserGame[]): Observable<any> {
+    return this._http.post(`${BASE_URL}UserGame`, games).pipe(take(1));
   }
 
   edit(game: IUserGame): Observable<any> {

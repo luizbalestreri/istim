@@ -5,7 +5,6 @@ import { Component, Injector, OnInit } from '@angular/core';
 import { AppBase } from 'src/app/shared/components/app-base.component';
 import { ShoppingCartService } from 'src/app/shopping-cart/shopping-cart.service';
 import { IShoppingCartItem } from './interfaces/IShoppingCartItem';
-import { GameService } from './../game/game.service';
 import { UserGameService } from './../game/user-game.service';
 import { UserInfoService } from '../core/user/user-info.service';
 import { UserService } from '../core/user/user.service';
@@ -21,7 +20,6 @@ export class ShoppingCartComponent extends AppBase implements OnInit {
     private _shoppingCartService: ShoppingCartService,
     private _userInfoService: UserInfoService,
     private _userService: UserService,
-    private _gameService: GameService,
     private _userGameService: UserGameService
   ) {
     super(_injector);
@@ -77,9 +75,40 @@ export class ShoppingCartComponent extends AppBase implements OnInit {
         }
       }
 
-      // let userGame: IUserGame;
+      let userGames: IUserGame[] = [];
 
-      // this._userGameService.create()
+      for (let i = 0; i < this.items.length; i++) {
+        let userGame: IUserGame = {
+          id: 0,
+          gameId: this.items[i].gameId,
+          applicationUserId: this.userId,
+        };
+
+        userGames.push(userGame);
+      }
+
+      this._userGameService.create(userGames).subscribe(
+        () => {
+          this._snackbarService.success(
+            'Jogo adquirido, verifique sua biblioteca!'
+          );
+
+          this.resetShoppingCart();
+          this._shoppingCartService.removeShoppingCart();
+          this._router.navigate(['biblioteca']);
+        },
+        (err) => {
+          this._messageDialogService.message(
+            'Atenção!',
+            `${err.error.message}!`
+          );
+        }
+      );
     });
+  }
+
+  resetShoppingCart(): void {
+    this.items = [];
+    this.setTotalItems();
   }
 }
