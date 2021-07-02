@@ -16,12 +16,14 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { SnackbarComponent } from './components/snackbar/snackbar.component';
 import { NavBarComponent } from './components/navbar/navbar.component';
 import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dialog.component';
+import { MessageDialogComponent } from './components/message-dialog/message-dialog.component';
 
 @NgModule({
   declarations: [
     NavBarComponent,
     SnackbarComponent,
     ConfirmDialogComponent,
+    MessageDialogComponent,
     SafeHtmlPipe,
   ],
   imports: [

@@ -7,6 +7,7 @@ import { AppBase } from 'src/app/shared/components/app-base.component';
 import { CreateOrEditGameComponent } from './create-or-edit/create-or-edit-game.component';
 import { GameService } from './game.service';
 import { IGame } from './interfaces/IGame';
+import { IGameInfo } from './interfaces/IGameInfo';
 
 @Component({
   templateUrl: './game.component.html',
@@ -14,7 +15,7 @@ import { IGame } from './interfaces/IGame';
 })
 export class GameComponent extends AppBase {
   displayedColumns: string[] = ['actions', 'title'];
-  dataSource!: MatTableDataSource<IGame>;
+  dataSource!: MatTableDataSource<IGameInfo>;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
