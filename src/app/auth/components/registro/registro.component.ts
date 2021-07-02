@@ -2,8 +2,8 @@ import { Component, Injector } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AppBase } from 'src/app/shared/components/app-base.component';
-import { RegistroService } from './registro.service';
 import { IRegistro } from './IRegistro';
+import { UserService } from './../../../core/user/user.service';
 
 @Component({
   templateUrl: './registro.component.html',
@@ -14,7 +14,7 @@ export class RegistroComponent extends AppBase {
     _injector: Injector,
     private _router: Router,
     private _formBuilder: FormBuilder,
-    private _registroService: RegistroService
+    private _userService: UserService
   ) {
     super(_injector);
   }
@@ -37,7 +37,7 @@ export class RegistroComponent extends AppBase {
     let data: IRegistro = this.formReg.getRawValue();
     data.id = '';
 
-    this._registroService.create(data).subscribe(
+    this._userService.create(data).subscribe(
       (res) => {
         this._snackbarService.success(`Usuário registrado com sucesso!`);
         this._router.navigate(['login']);

@@ -7,11 +7,14 @@ import {
   UrlTree,
 } from '@angular/router';
 import { Observable } from 'rxjs';
-import { UserService } from '../user/user.service';
+import { UserInfoService } from '../user/user-info.service';
 
 @Injectable({ providedIn: 'root' })
 export class AdminGuard implements CanActivate {
-  constructor(private _userService: UserService, private _router: Router) {}
+  constructor(
+    private _userInfoService: UserInfoService,
+    private _router: Router
+  ) {}
 
   canActivate(
     route: ActivatedRouteSnapshot,
@@ -21,7 +24,7 @@ export class AdminGuard implements CanActivate {
     | UrlTree
     | Observable<boolean | UrlTree>
     | Promise<boolean | import('@angular/router').UrlTree> {
-    if (!this._userService.isAdmin()) {
+    if (!this._userInfoService.isAdmin()) {
       this._router.navigate(['']);
       return false;
     }

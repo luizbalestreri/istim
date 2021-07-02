@@ -1,66 +1,22 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
-import { BehaviorSubject, Observable } from 'rxjs';
-import { IUserTokenDecoded } from '../token/interfaces/IUserTokenDecoded';
-import { TokenService } from '../token/token.service';
-import { IUserLoggedInfo } from './IUserLoggedInfo';
+import { Observable } from 'rxjs';
+import { take } from 'rxjs/operators';
+import { IRegistro } from 'src/app/auth/components/registro/IRegistro';
+import { environment } from 'src/environments/environment';
+import { IUserInfo } from './interfaces/IUserInfo';
+
+const BASE_URL: string = `${environment.baseUrls.server}${environment.baseUrls.v1ApiUrl}`;
 
 @Injectable({ providedIn: 'root' })
 export class UserService {
-  user$: BehaviorSubject<IUserLoggedInfo> =
-    new BehaviorSubject<IUserLoggedInfo>({
-      role: '',
-      username: '',
-      email: '',
-    });
+  constructor(private _http: HttpClient) {}
 
-  constructor(private _tokenService: TokenService, private _router: Router) {
-    this._tokenService.hasToken() && this.decodeUserToken();
+  getById(id: string): Observable<IUserInfo> {
+    return this._http.get<IUserInfo>(`${BASE_URL}User/${id}`).pipe(take(1));
   }
 
-  getUser(): Observable<IUserLoggedInfo> {
-    return this.user$.asObservable();
-  }
-
-  setToken(token: string): void {
-    this._tokenService.setToken(token);
-    this.decodeUserToken();
-  }
-
-  logout(): void {
-    this._tokenService.removeToken();
-    this.user$.next({
-      role: '',
-      username: '',
-      email: '',
-    });
-    this._router.navigate(['/']);
-  }
-
-  isLogged(): boolean {
-    return this._tokenService.hasToken();
-  }
-
-  isAdmin(): boolean {
-    return 'ADMIN' === this.user$.getValue().role;
-  }
-
-  private decodeUserToken(): void {
-    const token = this._tokenService.getToken();
-
-    const user: IUserTokenDecoded = this.decode(token);
-    this.user$.next({
-      username: user.unique_name,
-      role: user.role,
-      email: user.email,
-    });
-  }
-
-  private decode(token: string): any {
-    try {
-      return JSON.parse(atob(token.split('.')[1]));
-    } catch {
-      console.error(`Nao foi possivel decodificar o token`);
-    }
+  create(user: IRegistro): Observable<any> {
+    return this._http.post(`${BASE_URL}User`, user).pipe(take(1));
   }
 }

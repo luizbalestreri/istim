@@ -2,40 +2,39 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { take } from 'rxjs/operators';
-import { IGame } from './interfaces/IGame';
 import { environment } from 'src/environments/environment';
 import { IPagedList } from '../shared/interfaces/IPagedList';
-import { IGameInfo } from './interfaces/IGameInfo';
+import { IUserGame } from './interfaces/IUserGame';
 
 const BASE_URL: string = `${environment.baseUrls.server}${environment.baseUrls.v1ApiUrl}`;
 
 @Injectable({
   providedIn: 'root',
 })
-export class GameService {
+export class UserGameService {
   constructor(private _http: HttpClient) {}
 
-  getAll(): Observable<IPagedList<IGameInfo>> {
+  getAll(): Observable<IPagedList<IUserGame>> {
     return this._http
-      .get<IPagedList<IGameInfo>>(`${BASE_URL}Game`)
+      .get<IPagedList<IUserGame>>(`${BASE_URL}UserGame`)
       .pipe(take(1));
   }
 
-  getById(id: number): Observable<IGameInfo> {
-    return this._http.get<IGameInfo>(`${BASE_URL}Game/${id}`).pipe(take(1));
+  getById(id: number): Observable<IUserGame> {
+    return this._http.get<IUserGame>(`${BASE_URL}UserGame/${id}`).pipe(take(1));
   }
 
-  create(game: IGame): Observable<any> {
-    return this._http.post(`${BASE_URL}Game`, game).pipe(take(1));
+  create(game: IUserGame): Observable<any> {
+    return this._http.post(`${BASE_URL}UserGame`, game).pipe(take(1));
   }
 
-  edit(game: IGame): Observable<any> {
+  edit(game: IUserGame): Observable<any> {
     return this._http
-      .put<any>(`${BASE_URL}Game/${game.id}`, game)
+      .put<any>(`${BASE_URL}UserGame/${game.id}`, game)
       .pipe(take(1));
   }
 
   delete(id: number): Observable<any> {
-    return this._http.delete<any>(`${BASE_URL}Game/${id}`).pipe(take(1));
+    return this._http.delete<any>(`${BASE_URL}UserGame/${id}`).pipe(take(1));
   }
 }

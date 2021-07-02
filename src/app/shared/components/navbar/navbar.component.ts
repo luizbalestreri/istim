@@ -1,15 +1,7 @@
-import {
-  Component,
-  VERSION,
-  OnInit,
-  Output,
-  EventEmitter,
-} from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { Observable } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
-import { IUserLoggedInfo } from 'src/app/core/user/IUserLoggedInfo';
-import { UserService } from './../../../core/user/user.service';
+import { UserInfoService } from 'src/app/core/user/user-info.service';
 
 @Component({
   selector: 'nav-bar',
@@ -23,10 +15,10 @@ export class NavBarComponent implements OnInit {
   isMenuCollapsed: boolean = true;
   @Output() searchChange: EventEmitter<any> = new EventEmitter<any>();
 
-  constructor(private _userService: UserService) {}
+  constructor(private _userInfoService: UserInfoService) {}
 
   ngOnInit() {
-    this._userService.getUser().subscribe((res) => {
+    this._userInfoService.getUser().subscribe((res) => {
       this.username = res.username;
     });
 
@@ -36,14 +28,14 @@ export class NavBarComponent implements OnInit {
   }
 
   userIsLogged(): boolean {
-    return this._userService.isLogged();
+    return this._userInfoService.isLogged();
   }
 
   isAdmin(): boolean {
-    return this._userService.isAdmin();
+    return this._userInfoService.isAdmin();
   }
 
   logout(): void {
-    this._userService.logout();
+    this._userInfoService.logout();
   }
 }
