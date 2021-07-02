@@ -3,4 +3,5 @@ export interface IShoppingCartItem {
   value: number;
   title: string;
   image: string;
+  ageRange: number;
 }

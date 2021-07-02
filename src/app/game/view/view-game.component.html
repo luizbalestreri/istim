@@ -32,7 +32,7 @@
           <p class="game-info-item">
             Data de lançamento: {{ game?.releaseDate | date: "dd/MM/yyyy" }}
           </p>
-          <p class="game-info-item">Categoria: {{ category }}</p>
+          <p class="game-info-item">Categoria: {{ game?.category?.title }}</p>
         </li>
       </ul>
     </div>
@@ -62,24 +62,25 @@
     </div>
     <div class="col-sm-4">
       <mat-card>
-        <mat-card-header *ngIf="ageRange != 0">
+        <mat-card-header *ngIf="game?.ageRange?.range != 0">
           <mat-card-title class="card-with-age-range-title"
-            >CLASSIFICAÇÃO INDICATIVA: {{ ageRange }} ANOS</mat-card-title
+            >CLASSIFICAÇÃO INDICATIVA:
+            {{ game?.ageRange?.range }} ANOS</mat-card-title
           >
         </mat-card-header>
         <mat-card-content class="ml-3">
           <img
-            *ngIf="ageRange != 0"
+            *ngIf="game?.ageRange?.range != 0"
             [src]="
               'https://store.cloudflare.steamstatic.com/public/shared/images/game_ratings/DEJUS/' +
-              ageRange +
+              game?.ageRange?.range +
               '.png'
             "
             alt="Imagem da faixa de idade permitida"
           />
 
           <img
-            *ngIf="ageRange == 0"
+            *ngIf="game?.ageRange?.range == 0"
             src="
               https://store.cloudflare.steamstatic.com/public/shared/images/game_ratings/DEJUS/l.png
             "

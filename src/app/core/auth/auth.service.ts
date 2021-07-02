@@ -1,9 +1,9 @@
 import { Observable } from 'rxjs';
-import { UserService } from './../user/user.service';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { tap } from 'rxjs/operators';
+import { UserInfoService } from '../user/user-info.service';
 
 const BASE_URL: string = `${environment.baseUrls.server}${environment.baseUrls.v1ApiUrl}`;
 
@@ -14,7 +14,10 @@ export interface ILoginCredentials {
 
 @Injectable()
 export class AuthService {
-  constructor(private _http: HttpClient, private _userService: UserService) {}
+  constructor(
+    private _http: HttpClient,
+    private _userInfoService: UserInfoService
+  ) {}
 
   authenticate(data: ILoginCredentials): Observable<any> {
     let url: string = `${BASE_URL}Auth/Authenticate`;
@@ -22,7 +25,7 @@ export class AuthService {
     return this._http.post(url, data, { observe: 'response' }).pipe(
       tap((res: any) => {
         const authToken: any = res.body.token;
-        this._userService.setToken(authToken);
+        this._userInfoService.setToken(authToken);
       })
     );
   }

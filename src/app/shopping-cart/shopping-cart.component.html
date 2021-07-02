@@ -38,7 +38,12 @@
     </p>
   </mat-card-content>
   <mat-card-actions class="card-shopping-cart-totalizer-actions">
-    <button mat-raised-button color="primary" [disabled]="items.length <= 0">
+    <button
+      mat-raised-button
+      color="primary"
+      [disabled]="items.length <= 0"
+      (click)="buyGames()"
+    >
       Comprar para a minha conta
     </button>
     <button mat-raised-button color="primary" [disabled]="items.length <= 0">
