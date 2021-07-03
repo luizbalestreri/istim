@@ -1,0 +1,76 @@
+.library-title {
+  font-size: 1.8rem;
+  margin: 15px 0;
+}
+
+.card-library-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.card-library-game-info {
+  display: flex;
+  align-items: center;
+}
+
+.card-library-game-image {
+  width: 250px;
+  height: auto;
+}
+
+.card-library-game-play {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-left: 20px;
+}
+
+.card-library-game-title {
+  font-size: 1.4rem;
+}
+
+.icon-large {
+  transform: scale(1.5);
+}
+
+.card-library-game-other-info {
+  width: 40%;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.card-library-game-other-info-group {
+  display: flex;
+  align-items: center;
+}
+
+.card-library-game-other-info-group-description {
+  display: flex;
+  flex-direction: column;
+}
+
+@media (max-width: 780px) {
+  .card-library-content {
+    flex-direction: column;
+  }
+
+  .card-library-game-info {
+    flex-direction: column;
+  }
+
+  .card-library-game-play {
+    margin-left: 0;
+    align-items: center;
+  }
+
+  .card-library-game-title {
+    margin-top: 10px;
+  }
+
+  .card-library-game-other-info {
+    margin-top: 10px;
+    width: 100%;
+  }
+}

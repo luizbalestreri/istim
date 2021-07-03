@@ -1,0 +1,40 @@
+<h2 class="library-title">MEUS JOGOS</h2>
+<mat-card *ngFor="let userGame of userGames; let i = index" class="mb-3">
+  <mat-card-content class="card-library-content">
+    <div class="card-library-game-info">
+      <img
+        [src]="'data:image/jpg;base64, ' + userGame.game.image | safeHtml"
+        class="card-library-game-image"
+        alt="Imagem do jogo"
+      />
+      <div class="card-library-game-play">
+        <p class="card-library-game-title">
+          {{ userGame.game.title }}
+        </p>
+        <button mat-raised-button color="primary">
+          <mat-icon class="icon-large">arrow_right</mat-icon> JOGAR
+        </button>
+      </div>
+    </div>
+    <div class="card-library-game-other-info">
+      <div class="card-library-game-other-info-group">
+        <mat-icon class="material-icons-outlined icon-large mr-2"
+          >watch_later</mat-icon
+        >
+        <div class="card-library-game-other-info-group-description">
+          <span>TEMPO DE JOGO</span>
+          <span>0.0 horas</span>
+        </div>
+      </div>
+      <div class="card-library-game-other-info-group">
+        <mat-icon class="material-icons-outlined icon-large mr-2"
+          >workspace_premium</mat-icon
+        >
+        <div class="card-library-game-other-info-group-description">
+          <span>CONQUISTAS</span>
+          <span>0/37</span>
+        </div>
+      </div>
+    </div>
+  </mat-card-content>
+</mat-card>

@@ -3,8 +3,8 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { take } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
-import { IPagedList } from '../shared/interfaces/IPagedList';
 import { IUserGame } from './interfaces/IUserGame';
+import { IUserGameInfo } from './interfaces/IUserGameInfo';
 
 const BASE_URL: string = `${environment.baseUrls.server}${environment.baseUrls.v1ApiUrl}`;
 
@@ -14,9 +14,9 @@ const BASE_URL: string = `${environment.baseUrls.server}${environment.baseUrls.v
 export class UserGameService {
   constructor(private _http: HttpClient) {}
 
-  getAll(): Observable<IPagedList<IUserGame>> {
+  getAll(userId: string): Observable<IUserGameInfo[]> {
     return this._http
-      .get<IPagedList<IUserGame>>(`${BASE_URL}UserGame`)
+      .get<IUserGameInfo[]>(`${BASE_URL}UserGame/UserId/${userId}`)
       .pipe(take(1));
   }
 
