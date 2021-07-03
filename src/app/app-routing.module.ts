@@ -33,12 +33,14 @@ const routes: Routes = [
   },
   {
     path: 'profile',
-    loadChildren: () => import('./profile/profile.module').then((x) => x.ProfileModule),
+    loadChildren: () =>
+      import('./profile/profile.module').then((x) => x.ProfileModule),
     canActivate: [],
   },
   {
     path: 'biblioteca',
-    loadChildren: () => import('./biblioteca/biblioteca.module').then((x) => x.BibliotecaModule),
+    loadChildren: () =>
+      import('./library/library.module').then((x) => x.LibraryModule),
     canActivate: [],
   },
   {
@@ -48,7 +50,8 @@ const routes: Routes = [
   },
   {
     path: 'loja',
-    loadChildren: () => import('./store/store.module').then((x) => x.StoreModule),
+    loadChildren: () =>
+      import('./store/store.module').then((x) => x.StoreModule),
     canActivate: [],
   },
   {

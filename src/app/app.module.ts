@@ -12,10 +12,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AuthService } from './core/auth/auth.service';
-import {MatSelectModule} from '@angular/material/select';
-import { BibliotecaComponent } from './biblioteca/biblioteca.component';
-import { ProfileComponent } from './profile/profile.component';
-import { StoreComponent } from './store/store.component';
+import { MatSelectModule } from '@angular/material/select';
 
 @NgModule({
   declarations: [AppComponent],
@@ -32,7 +29,7 @@ import { StoreComponent } from './store/store.component';
     ReactiveFormsModule,
     BrowserAnimationsModule,
     MatSnackBarModule,
-    MatSelectModule
+    MatSelectModule,
   ],
   providers: [AuthService],
   bootstrap: [AppComponent],

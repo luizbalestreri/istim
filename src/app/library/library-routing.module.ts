@@ -1,11 +1,11 @@
 import { RouterModule, Routes } from '@angular/router';
 import { NgModule } from '@angular/core';
-import { BibliotecaComponent } from './biblioteca.component';
+import { LibraryComponent } from './library.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: BibliotecaComponent,
+    component: LibraryComponent,
   },
 ];
 
@@ -13,4 +13,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class BibliotecaRoutingModule {}
+export class LibraryRoutingModule {}

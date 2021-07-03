@@ -1,5 +1,4 @@
-import { BibliotecaComponent } from './biblioteca.component';
-import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
@@ -10,15 +9,19 @@ import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatCardModule } from '@angular/material/card';
 import { MatSortModule } from '@angular/material/sort';
-import { RequestInterceptor } from './../core/interceptors/request-interceptor';
-import { BibliotecaRoutingModule } from './biblioteca-routing.module';
+import { SharedModule } from './../shared/shared.module';
+import { LibraryRoutingModule } from './library-routing.module';
+import { LibraryComponent } from './library.component';
+import { RequestInterceptor } from '../core/interceptors/request-interceptor';
 
 @NgModule({
-  declarations: [BibliotecaComponent],
+  declarations: [LibraryComponent],
   imports: [
     CommonModule,
-    BibliotecaRoutingModule,
+    LibraryRoutingModule,
+    SharedModule,
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
@@ -30,6 +33,14 @@ import { BibliotecaRoutingModule } from './biblioteca-routing.module';
     MatSortModule,
     MatMenuModule,
     MatDialogModule,
+    MatCardModule,
+  ],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: RequestInterceptor,
+      multi: true,
+    },
   ],
 })
-export class BibliotecaModule {}
+export class LibraryModule {}
