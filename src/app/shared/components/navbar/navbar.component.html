@@ -17,8 +17,8 @@
     >
     <div class="pb-lg-0 flex-lg-row menu-items">
     <div>
-    <button mat-button routerLink="loja">Loja</button>
-    <button mat-button routerLink="biblioteca">Biblioteca</button>
+    <button mat-button routerLink="/">Loja</button>
+    <button mat-button *ngIf = "userIsLogged()" routerLink="biblioteca">Biblioteca</button>
     <button mat-button *ngIf = "userIsLogged()" [matMenuTriggerFor]="menuProfile">{{username}}</button>
     <mat-menu #menuProfile="matMenu" class = "bg-dark">
       <button mat-menu-item class = "menu-item" routerLink="profile">Ver perfil</button>

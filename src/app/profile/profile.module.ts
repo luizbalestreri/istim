@@ -1,3 +1,4 @@
+import { MatCardModule } from '@angular/material/card';
 import { ProfileComponent } from './profile.component';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -13,6 +14,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatSortModule } from '@angular/material/sort';
 import { RequestInterceptor } from '../core/interceptors/request-interceptor';
 import { ProfileRoutingModule } from './profile-routing.module';
+import { MatLabel } from '@angular/material/form-field';
 
 @NgModule({
   declarations: [ProfileComponent],
@@ -30,6 +32,7 @@ import { ProfileRoutingModule } from './profile-routing.module';
     MatSortModule,
     MatMenuModule,
     MatDialogModule,
+    MatCardModule
   ],
 })
 export class ProfileModule {}

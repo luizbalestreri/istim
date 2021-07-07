@@ -1,5 +1,7 @@
+import { MatTableModule } from '@angular/material/table';
+import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { CommonModule } from '@angular/common';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -9,6 +11,11 @@ import { MatInputModule } from '@angular/material/input';
 import { SharedModule } from './../shared/shared.module';
 import { HomePageRoutingModule } from './home-page-routing.module';
 import { HomePageComponent } from './home-page.component';
+import { MatSortModule } from '@angular/material/sort';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatDialogModule } from '@angular/material/dialog';
+import { GameService } from '../game/game.service';
+import { RequestInterceptor } from '../core/interceptors/request-interceptor';
 
 @NgModule({
   declarations: [HomePageComponent],
@@ -23,7 +30,20 @@ import { HomePageComponent } from './home-page.component';
     MatIconModule,
     MatButtonModule,
     MatInputModule,
+    MatPaginatorModule,
+    MatTableModule,
+    MatSortModule,
+    MatMenuModule,
+    MatDialogModule,
   ],
-  providers: [],
+  providers: [
+    GameService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: RequestInterceptor,
+      multi: true,
+    },
+
+  ],
 })
 export class HomePageModule {}

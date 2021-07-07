@@ -70,10 +70,10 @@
               Este campo é <strong>obrigatório</strong>
             </mat-error>
             <mat-error *ngIf="formReg.get('phone')?.hasError('minlength')">
-              Informe no mínimo 2 caracteres
+              Informe no mínimo 8 caracteres
             </mat-error>
             <mat-error *ngIf="formReg.get('phone')?.hasError('maxlength')">
-              Informe no máximo 60 caracteres
+              Informe no máximo 12 caracteres
             </mat-error>
           </mat-form-field>
         </div>

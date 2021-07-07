@@ -1,14 +1,32 @@
-import { Component, OnInit } from '@angular/core';
+import { IGameInfo } from './../game/interfaces/IGameInfo';
+import { AppBase } from 'src/app/shared/components/app-base.component';
+import { Component, Injector, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { GameService } from './../game/game.service';
 import { IGame } from './../game/interfaces/IGame';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
+import { MatTableDataSource } from '@angular/material/table';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   templateUrl: './home-page.component.html',
   styleUrls: ['./home-page.component.scss'],
 })
-export class HomePageComponent implements OnInit {
-  constructor(private _router: Router, private _gameService: GameService) {}
+export class HomePageComponent  extends AppBase implements OnInit {
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+  @ViewChild(MatSort) sort!: MatSort;
+
+  displayedColumns: string[] = ['image', 'title', 'value', 'description', 'releaseDate', 'category', 'ageRange'];
+  dataSource!: MatTableDataSource<IGameInfo>;
+  constructor(
+    _injector: Injector,
+    private dialog: MatDialog,
+    private _router: Router, 
+    private _gameService: GameService) 
+    {    
+    super(_injector);
+    this.setDataSource();}
 
   games: IGame[] = [];
 
@@ -22,11 +40,31 @@ export class HomePageComponent implements OnInit {
         }
       }
 
-      this.games = res.data;
+      this.games = res.data; 
     });
   }
 
   redirectToGame(gameId: number): void {
     this._router.navigate(['/jogos/', gameId]);
+  }
+
+  setDataSource(): void {
+    this._gameService.getAll().subscribe((res) => {
+      this.dataSource = new MatTableDataSource(res.data);
+      this.dataSource.paginator = this.paginator;
+      this.dataSource.sort = this.sort;
+      console.log(res.data)
+    });
+  }
+
+  
+
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+
+    if (this.dataSource.paginator) {
+      this.dataSource.paginator.firstPage();
+    }
   }
 }

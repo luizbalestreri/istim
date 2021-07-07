@@ -1,1 +1,66 @@
-<p>profile works!</p>
+<div class="main-div">
+  <mat-card>
+    <mat-card-title> Perfil </mat-card-title>
+    <br />
+    <mat-card-content>
+      <form [formGroup]="formReg">
+        <div>
+          <mat-form-field class="form">
+            <mat-label>Nome de usuário</mat-label>
+            <input type="text" matInput formControlName="user" />
+          </mat-form-field>
+        </div>
+        <div>
+          <mat-form-field class="form">
+            <mat-label>Email</mat-label>
+            <input
+              type="email"
+              matInput
+              formControlName="email"
+              autocomplete="off"
+            />
+            <mat-error *ngIf="formReg.get('email')?.hasError('required')">
+              Este campo é <strong>obrigatório</strong>
+            </mat-error>
+            <mat-error *ngIf="formReg.get('email')?.hasError('minlength')">
+              Informe no mínimo 2 caracteres
+            </mat-error>
+            <mat-error *ngIf="formReg.get('email')?.hasError('maxlength')">
+              Informe no máximo 60 caracteres
+            </mat-error>
+            <mat-error *ngIf="formReg.get('email')?.hasError('email')">
+              Email Inválido
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div>
+          <mat-form-field class="form">
+            <mat-label>Id</mat-label>
+            <input
+              type="text"
+              matInput
+              formControlName="id"
+              autocomplete="off"
+            />
+          </mat-form-field>
+        </div>
+        <div>
+          <mat-form-field class="form">
+            <mat-label>Telefone</mat-label>
+            <input type="number" matInput formControlName="phone" />
+            <mat-error *ngIf="formReg.get('phone')?.hasError('required')">
+              Este campo é <strong>obrigatório</strong>
+            </mat-error>
+            <mat-error *ngIf="formReg.get('phone')?.hasError('minlength')">
+              Informe no mínimo 8 caracteres
+            </mat-error>
+            <mat-error *ngIf="formReg.get('phone')?.hasError('maxlength')">
+              Informe no máximo 12 caracteres
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <p></p>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>

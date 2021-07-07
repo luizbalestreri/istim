@@ -33,6 +33,7 @@ export class ViewGameComponent extends AppBase implements OnInit {
           }
 
           this.game = res;
+          console.log(res)
         },
         () => {
           this._router.navigate(['not-found']);
