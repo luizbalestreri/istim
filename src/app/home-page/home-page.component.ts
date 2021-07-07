@@ -8,6 +8,8 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatDialog } from '@angular/material/dialog';
+import { ShoppingCartService } from '../shopping-cart/shopping-cart.service';
+import { IShoppingCartItem } from '../shopping-cart/interfaces/IShoppingCartItem';
 
 @Component({
   templateUrl: './home-page.component.html',
@@ -17,12 +19,13 @@ export class HomePageComponent  extends AppBase implements OnInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-  displayedColumns: string[] = ['image', 'title', 'value', 'description', 'releaseDate', 'category', 'ageRange'];
+  displayedColumns: string[] = ['image', 'title', 'value', 'description', 'releaseDate', 'category', 'ageRange', 'carrinho', 'verJogo'];
   dataSource!: MatTableDataSource<IGameInfo>;
   constructor(
     _injector: Injector,
     private dialog: MatDialog,
     private _router: Router, 
+    private _shoppingCartService: ShoppingCartService,
     private _gameService: GameService) 
     {    
     super(_injector);
@@ -57,7 +60,20 @@ export class HomePageComponent  extends AppBase implements OnInit {
     });
   }
 
-  
+  addItemToShoppingCart(game): void {
+    let data: IShoppingCartItem = {
+      gameId: game.id,
+      value: game.value,
+      title: game.title,
+      image: game.image,
+      ageRange: game.ageRange.range,
+    };
+
+    this._shoppingCartService.addItemToShoppingCart(data);
+    this._snackbarService.success('Jogo adicionado ao carrinho!');
+    this._router.navigate(['carrinho']);
+  }
+
 
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;

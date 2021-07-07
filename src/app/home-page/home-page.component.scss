@@ -14,14 +14,36 @@
 }
 
 .game-image {
-  width: 30%;
+  width: 100%;
   height: auto;
-
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .ageRange {
-  width: 50%;
+  width: 40%;
   height: auto;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+table {
+  width: 100%;
+}
+
+.mat-form-field {
+  font-size: 14px;
+  width: 100%;
+}
+
+td,
+th {
+  width: 10%;
+}
+
+td img{
   display: block;
   margin-left: auto;
   margin-right: auto;
